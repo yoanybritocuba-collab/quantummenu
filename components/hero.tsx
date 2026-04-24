@@ -19,11 +19,11 @@ export function Hero() {
   const [selectedCategory, setSelectedCategory] = useState("todos")
   
   const [adminMenu, setAdminMenu] = useState([
-    { id: 1, name: "Ribeye Steak", price: 32, available: true, recommended: true, category: "categories.main", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" },
-    { id: 2, name: "Truffle Pasta", price: 24, available: true, recommended: false, category: "categories.pasta", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop" },
-    { id: 3, name: "Margherita Pizza", price: 18, available: false, recommended: false, category: "categories.pizza", image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
-    { id: 4, name: "Grilled Salmon", price: 28, available: true, recommended: true, category: "categories.main", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop" },
-    { id: 5, name: "Chocolate Cake", price: 9, available: true, recommended: false, category: "categories.dessert", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
+    { id: 1, name: "Ribeye Steak", price: 32, available: true, recommended: true, category: "Principal", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" },
+    { id: 2, name: "Pasta con Trufa", price: 24, available: true, recommended: false, category: "Pastas", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop" },
+    { id: 3, name: "Pizza Margherita", price: 18, available: false, recommended: false, category: "Pizza", image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
+    { id: 4, name: "Salmón a la Parrilla", price: 28, available: true, recommended: true, category: "Principal", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop" },
+    { id: 5, name: "Tarta de Chocolate", price: 9, available: true, recommended: false, category: "Postre", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
   ])
 
   const [categories, setCategories] = useState([
@@ -35,23 +35,23 @@ export function Hero() {
 
   const menuCategories = [
     { id: "todos", name: "Todos", icon: "🍽️" },
-    { id: "categories.main", name: "Principales", icon: "🥩" },
-    { id: "categories.pasta", name: "Pastas", icon: "🍝" },
-    { id: "categories.dessert", name: "Postres", icon: "🍰" },
-    { id: "categories.drink", name: "Bebidas", icon: "🥤" },
+    { id: "Principal", name: "Principales", icon: "🥩" },
+    { id: "Pastas", name: "Pastas", icon: "🍝" },
+    { id: "Postre", name: "Postres", icon: "🍰" },
+    { id: "Bebida", name: "Bebidas", icon: "🥤" },
   ]
 
   const allPlatos = [
-    { nameKey: "menu.ribeye", price: "€32", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop", categoryKey: "categories.main", rating: 4.9, chefSuggestion: true },
-    { nameKey: "menu.trufflePasta", price: "€24", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop", categoryKey: "categories.pasta", rating: 4.8, chefSuggestion: false },
-    { nameKey: "menu.salmon", price: "€28", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop", categoryKey: "categories.main", rating: 4.9, chefSuggestion: true },
-    { nameKey: "menu.chocolateCake", price: "€9", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop", categoryKey: "categories.dessert", rating: 4.9, chefSuggestion: false },
-    { nameKey: "menu.mojito", price: "€12", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop", categoryKey: "categories.drink", rating: 4.8, chefSuggestion: false },
+    { name: "Ribeye Steak", price: "€32", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop", category: "Principal", rating: 4.9, chefSuggestion: true },
+    { name: "Pasta con Trufa", price: "€24", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop", category: "Pastas", rating: 4.8, chefSuggestion: false },
+    { name: "Salmón a la Parrilla", price: "€28", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop", category: "Principal", rating: 4.9, chefSuggestion: true },
+    { name: "Tarta de Chocolate", price: "€9", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop", category: "Postre", rating: 4.9, chefSuggestion: false },
+    { name: "Mojito", price: "€12", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop", category: "Bebida", rating: 4.8, chefSuggestion: false },
   ]
 
   const filteredPlatos = selectedCategory === "todos" 
     ? allPlatos 
-    : allPlatos.filter(p => p.categoryKey === selectedCategory)
+    : allPlatos.filter(p => p.category === selectedCategory)
 
   const toggleAvailability = (id: number) => {
     setAdminMenu(prev => prev.map(item => 
@@ -99,24 +99,13 @@ export function Hero() {
           const logoY = (canvas.height - logoSize) / 2
           
           ctx.save()
-          ctx.beginPath()
-          ctx.arc(canvas.width / 2, canvas.height / 2, logoSize / 2 + 10, 0, Math.PI * 2)
-          ctx.fillStyle = '#FFFFFF'
-          ctx.fill()
-          ctx.shadowColor = 'rgba(0,0,0,0.15)'
+          // CUADRADO NEGRO en lugar de círculo blanco
+          ctx.fillStyle = '#000000'
+          ctx.fillRect(logoX - 5, logoY - 5, logoSize + 10, logoSize + 10)
+          ctx.shadowColor = 'rgba(0,0,0,0.5)'
           ctx.shadowBlur = 8
           ctx.drawImage(logo, logoX, logoY, logoSize, logoSize)
           ctx.shadowColor = 'transparent'
-          ctx.beginPath()
-          ctx.arc(canvas.width / 2, canvas.height / 2, logoSize / 2 + 6, 0, Math.PI * 2)
-          ctx.strokeStyle = '#ff0000'
-          ctx.lineWidth = 2.5
-          ctx.stroke()
-          ctx.beginPath()
-          ctx.arc(canvas.width / 2, canvas.height / 2, logoSize / 2 + 2, 0, Math.PI * 2)
-          ctx.strokeStyle = '#ff3333'
-          ctx.lineWidth = 1.5
-          ctx.stroke()
           ctx.restore()
           
           const imageUrl = canvas.toDataURL('image/png')
@@ -252,7 +241,11 @@ export function Hero() {
                         
                         <div className="w-full bg-blue-600/80 py-1">
                           <div className="animate-ticker whitespace-nowrap inline-block">
-                            <span className="text-white text-[9px] font-medium mx-3">📢 {t("config.infoLine")} - ¡{t("menu.ribeye")}!</span>
+                            <span className="text-white text-[9px] font-medium mx-3">📢 {t("info.line1")} - {t("menu.ribeye")}</span>
+                            <span className="text-white text-[9px] font-medium mx-3">|</span>
+                            <span className="text-white text-[9px] font-medium mx-3">🎉 {t("info.line2")}</span>
+                            <span className="text-white text-[9px] font-medium mx-3">|</span>
+                            <span className="text-white text-[9px] font-medium mx-3">⭐ {t("info.line3")}</span>
                           </div>
                         </div>
                         
@@ -265,7 +258,7 @@ export function Hero() {
                           </div>
                           <div className="absolute top-2 right-2 bg-yellow-500/90 backdrop-blur-sm rounded-full px-2 py-0.5 flex items-center gap-1">
                             <ChefHat className="w-3 h-3 text-white" />
-                            <span className="text-white text-[8px] sm:text-[10px] font-bold">SUGERENCIA DEL CHEF</span>
+                            <span className="text-white text-[8px] sm:text-[10px] font-bold">{t("admin.suggested")}</span>
                           </div>
                         </div>
                         
@@ -282,9 +275,9 @@ export function Hero() {
                             <span>Todos</span>
                           </button>
                           <button
-                            onClick={() => setSelectedCategory("categories.main")}
+                            onClick={() => setSelectedCategory("Principal")}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
-                              selectedCategory === "categories.main" 
+                              selectedCategory === "Principal" 
                                 ? "bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-md" 
                                 : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                             }`}
@@ -293,9 +286,9 @@ export function Hero() {
                             <span>{t("categories.main")}</span>
                           </button>
                           <button
-                            onClick={() => setSelectedCategory("categories.pasta")}
+                            onClick={() => setSelectedCategory("Pastas")}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
-                              selectedCategory === "categories.pasta" 
+                              selectedCategory === "Pastas" 
                                 ? "bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-md" 
                                 : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                             }`}
@@ -304,9 +297,9 @@ export function Hero() {
                             <span>{t("categories.pasta")}</span>
                           </button>
                           <button
-                            onClick={() => setSelectedCategory("categories.dessert")}
+                            onClick={() => setSelectedCategory("Postre")}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
-                              selectedCategory === "categories.dessert" 
+                              selectedCategory === "Postre" 
                                 ? "bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-md" 
                                 : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                             }`}
@@ -315,9 +308,9 @@ export function Hero() {
                             <span>{t("categories.dessert")}</span>
                           </button>
                           <button
-                            onClick={() => setSelectedCategory("categories.drink")}
+                            onClick={() => setSelectedCategory("Bebida")}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 ${
-                              selectedCategory === "categories.drink" 
+                              selectedCategory === "Bebida" 
                                 ? "bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-md" 
                                 : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                             }`}
@@ -331,15 +324,15 @@ export function Hero() {
                           {filteredPlatos.map((item, idx) => (
                             <div key={idx} className="group bg-gradient-to-r from-zinc-900/50 to-black/50 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-500/50 transition-all duration-300 cursor-pointer">
                               <div className="flex gap-2 p-2 sm:p-3">
-                                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0"><NextImage src={item.image} alt={t(item.nameKey)} fill className="object-cover group-hover:scale-110 transition-transform duration-300" /></div>
+                                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0"><NextImage src={item.image} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-300" /></div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-start justify-between gap-1">
                                     <div>
                                       <div className="flex items-center gap-1">
-                                        <h4 className="text-white font-semibold text-xs sm:text-sm truncate">{t(item.nameKey)}</h4>
+                                        <h4 className="text-white font-semibold text-xs sm:text-sm truncate">{item.name}</h4>
                                         {item.chefSuggestion && <ChefHat className="w-3 h-3 text-yellow-400" />}
                                       </div>
-                                      <p className="text-red-400/70 text-[8px] sm:text-[10px]">{t(item.categoryKey)}</p>
+                                      <p className="text-red-400/70 text-[8px] sm:text-[10px]">{item.category}</p>
                                     </div>
                                     <span className="text-red-400 font-bold text-xs sm:text-sm bg-red-500/10 px-1.5 sm:px-2 py-0.5 rounded shrink-0">{item.price}</span>
                                   </div>
@@ -415,15 +408,15 @@ export function Hero() {
                           {adminMenu.map((item) => (
                             <div key={item.id} className="bg-gradient-to-r from-zinc-900/50 to-black/50 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-500/50 transition-all duration-300">
                               <div className="flex gap-2 p-2 sm:p-3">
-                                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0"><NextImage src={item.image} alt={t(item.name)} fill className="object-cover" /></div>
+                                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg overflow-hidden flex-shrink-0"><NextImage src={item.image} alt={item.name} fill className="object-cover" /></div>
                                 <div className="flex-1 min-w-0">
                                   <div className="flex items-start justify-between gap-1">
                                     <div>
                                       <div className="flex items-center gap-1">
-                                        <h4 className="text-white font-semibold text-xs sm:text-sm truncate">{t(item.name)}</h4>
+                                        <h4 className="text-white font-semibold text-xs sm:text-sm truncate">{item.name}</h4>
                                         {item.recommended && <ChefHat className="w-3 h-3 text-yellow-400" />}
                                       </div>
-                                      <p className="text-zinc-500 text-[8px] sm:text-[10px]">{t(item.category)}</p>
+                                      <p className="text-zinc-500 text-[8px] sm:text-[10px]">{item.category}</p>
                                     </div>
                                     <span className="text-red-400 font-bold text-xs sm:text-sm">€{item.price}</span>
                                   </div>

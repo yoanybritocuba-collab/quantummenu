@@ -1,17 +1,16 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Globe, Scan } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/lib/language-context"
-import { languages } from "@/lib/translations"
-import Link from "next/link"
-import Image from "next/image"
+import { languages, type Language } from "@/lib/translations"
 
 export function Navigation() {
+  const { language, setLanguage, t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { language, setLanguage, t } = useLanguage()
+  const [isLangOpen, setIsLangOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +21,8 @@ export function Navigation() {
   }, [])
 
   const navItems = [
+    { name: t("nav.projects"), href: "#projects" },
+    { name: t("nav.demos"), href: "#demos" },
     { name: t("nav.services"), href: "#services" },
     { name: t("nav.pricing"), href: "#pricing" },
     { name: t("nav.contact"), href: "#contact" },
@@ -35,147 +36,132 @@ export function Navigation() {
     }
   }
 
-  const getCurrentLanguageFlag = () => {
-    const currentLang = languages.find(lang => lang.code === language)
-    return currentLang?.flag || "🇪🇸"
-  }
-
-  const cycleLanguage = () => {
-    const currentIndex = languages.findIndex(lang => lang.code === language)
-    const nextIndex = (currentIndex + 1) % languages.length
-    setLanguage(languages[nextIndex].code)
-  }
-
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-black/90 backdrop-blur-xl border-b border-red-500/20 shadow-2xl"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            
-            {/* Logo */}
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              <Link href="/" className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-600 rounded-full blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300 bg-white">
-                    <Image
-                      src="/logo.png"
-                      alt="Logo"
-                      fill
-                      className="object-contain p-1"
-                      priority
-                      sizes="(max-width: 640px) 36px, 44px"
-                    />
-                  </div>
-                </div>
-                <div className="hidden sm:block">
-                  <span className="text-white font-bold text-sm tracking-tight">
-                    Quantum<span className="text-red-400">Menu</span>
-                  </span>
-                  <div className="text-[8px] text-red-400/70 tracking-wider">DIGITAL EXPERIENCE</div>
-                </div>
-                <div className="block sm:hidden">
-                  <span className="text-white font-bold text-xs">Q<span className="text-red-400">M</span></span>
-                </div>
-              </Link>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/80 backdrop-blur-xl border-b border-red-500/20" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo - MAS GRANDE Y TRANSPARENTE */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 group"
+          >
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-transparent">
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="w-full h-full object-contain"
+                style={{ background: 'transparent' }}
+              />
             </div>
+            <span className="text-white font-bold text-lg sm:text-xl bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+              QuantumMenu
+            </span>
+          </button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center justify-center gap-1 lg:gap-2 flex-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="px-3 lg:px-4 py-2 text-sm font-medium text-zinc-300 hover:text-red-400 transition-all duration-300 rounded-lg hover:bg-red-500/10 relative group whitespace-nowrap"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-purple-600 transition-all duration-300 group-hover:w-6" />
-                </button>
-              ))}
-            </div>
-
-            {/* Desktop Right */}
-            <div className="hidden md:flex items-center gap-4 flex-shrink-0">
-              <button
-                onClick={cycleLanguage}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-all duration-300 min-w-[70px] justify-center"
-                title="Cambiar idioma"
-              >
-                <Globe className="w-4 h-4 text-red-400" />
-                <span className="text-lg">{getCurrentLanguageFlag()}</span>
-              </button>
-              <div className="w-px h-6 bg-zinc-800" />
-              <Button
-                size="sm"
-                className="bg-gradient-to-r from-red-600 to-purple-700 hover:from-red-700 hover:to-purple-800 text-white shadow-lg hover:shadow-red-500/25 transition-all duration-300 min-w-[140px]"
-                onClick={() => scrollToSection("#pricing")}
-              >
-                <Scan className="mr-2 w-3 h-3" />
-                {t("nav.getQuote")}
-              </Button>
-            </div>
-
-            {/* Mobile - Selector de idioma visible junto al menú */}
-            <div className="flex items-center gap-2 md:hidden">
-              <button
-                onClick={cycleLanguage}
-                className="flex items-center gap-1 px-2 py-1.5 rounded-lg bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-all duration-300"
-                title="Cambiar idioma"
-              >
-                <Globe className="w-3.5 h-3.5 text-red-400" />
-                <span className="text-sm">{getCurrentLanguageFlag()}</span>
-              </button>
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-lg bg-zinc-900/50 border border-zinc-800 hover:border-red-500/50 transition-all duration-300"
-              >
-                {isOpen ? <X className="w-5 h-5 text-red-400" /> : <Menu className="w-5 h-5 text-white" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`md:hidden fixed inset-x-0 top-16 bg-black/95 backdrop-blur-xl border-b border-red-500/20 shadow-2xl transition-all duration-300 overflow-hidden ${
-            isOpen ? "max-h-[calc(100vh-4rem)] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="px-4 py-4 space-y-2">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="w-full px-4 py-3 text-left text-zinc-300 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-all duration-200 flex items-center justify-between group"
+                className="text-sm lg:text-base text-zinc-300 hover:text-white transition-colors duration-200 relative group"
               >
-                <span>{item.name}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-red-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-purple-500 group-hover:w-full transition-all duration-300" />
               </button>
             ))}
-            
-            <div className="pt-4 space-y-3 border-t border-zinc-800">
-              <Button
-                className="w-full bg-gradient-to-r from-red-600 to-purple-700 hover:from-red-700 hover:to-purple-800 text-white shadow-lg"
-                onClick={() => {
-                  scrollToSection("#pricing")
-                  setIsOpen(false)
-                }}
+          </div>
+
+          {/* Right side - Language selector and Mobile menu button */}
+          <div className="flex items-center gap-3">
+            {/* Language Selector Desktop */}
+            <div className="relative hidden md:block">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition-all duration-200"
               >
-                <Scan className="mr-2 w-3 h-3" />
-                {t("nav.getQuote")}
-              </Button>
+                <Globe className="w-4 h-4 text-red-400" />
+                <span className="text-sm text-white">
+                  {languages.find(l => l.code === language)?.flag}
+                </span>
+              </button>
+              {isLangOpen && (
+                <div className="absolute top-full right-0 mt-2 glass rounded-xl overflow-hidden shadow-xl border border-red-500/30 z-50 min-w-[160px]">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code as Language)
+                        setIsLangOpen(false)
+                      }}
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
+                        language === lang.code
+                          ? "bg-red-500/20 text-red-400"
+                          : "text-zinc-300 hover:bg-red-500/10"
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span className="flex-1 text-left">{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 rounded-lg glass glass-hover"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
-      </nav>
 
-      <div className="h-16 sm:h-20" />
-    </>
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-red-500/20">
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className="px-4 py-3 text-left text-zinc-300 hover:text-white hover:bg-red-500/10 rounded-lg transition-all duration-200"
+                >
+                  {item.name}
+                </button>
+              ))}
+              {/* Mobile Language Selector */}
+              <div className="px-4 py-2">
+                <div className="flex flex-wrap gap-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code as Language)
+                        setIsOpen(false)
+                      }}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
+                        language === lang.code
+                          ? "bg-red-500/20 text-red-400 border border-red-500/30"
+                          : "bg-zinc-800/50 text-zinc-300 hover:bg-red-500/10"
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
   )
 }
