@@ -8,7 +8,7 @@ import QRCode from 'qrcode'
 import { useLanguage } from "@/lib/language-context"
 
 export function Hero() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [scanned, setScanned] = useState(false)
   const [scanLine, setScanLine] = useState(0)
   const [scanDirection, setScanDirection] = useState(1)
@@ -18,13 +18,38 @@ export function Hero() {
   const [activeDemo, setActiveDemo] = useState<"productos" | "categorias" | "config">("productos")
   const [selectedCategory, setSelectedCategory] = useState("todos")
   
-  const [adminMenu, setAdminMenu] = useState([
-    { id: 1, name: "Ribeye Steak", price: 32, available: true, recommended: true, category: "Principal", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" },
-    { id: 2, name: "Pasta con Trufa", price: 24, available: true, recommended: false, category: "Pastas", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop" },
-    { id: 3, name: "Pizza Margherita", price: 18, available: false, recommended: false, category: "Pizza", image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
-    { id: 4, name: "Salmón a la Parrilla", price: 28, available: true, recommended: true, category: "Principal", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop" },
-    { id: 5, name: "Tarta de Chocolate", price: 9, available: true, recommended: false, category: "Postre", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
-  ])
+  // DATOS BASE CON CLAVES (para que se traduzcan correctamente)
+  const adminMenuData = [
+    { id: 1, nameKey: "menu.ribeye", categoryKey: "categories.main", price: 32, available: true, recommended: true, image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" },
+    { id: 2, nameKey: "menu.trufflePasta", categoryKey: "categories.pasta", price: 24, available: true, recommended: false, image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop" },
+    { id: 3, nameKey: "menu.margherita", categoryKey: "categories.pizza", price: 18, available: false, recommended: false, image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop" },
+    { id: 4, nameKey: "menu.salmon", categoryKey: "categories.main", price: 28, available: true, recommended: true, image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop" },
+    { id: 5, nameKey: "menu.chocolateCake", categoryKey: "categories.dessert", price: 9, available: true, recommended: false, image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
+  ]
+
+  // Estado que traduce las claves al idioma actual
+  const [adminMenu, setAdminMenu] = useState(() => {
+    return adminMenuData.map(item => ({
+      id: item.id,
+      name: t(item.nameKey),
+      category: t(item.categoryKey),
+      price: item.price,
+      available: item.available,
+      recommended: item.recommended,
+      image: item.image,
+      nameKey: item.nameKey,
+      categoryKey: item.categoryKey
+    }))
+  })
+
+  // Actualizar traducciones cuando cambie el idioma
+  useEffect(() => {
+    setAdminMenu(prev => prev.map(item => ({
+      ...item,
+      name: t(item.nameKey),
+      category: t(item.categoryKey)
+    })))
+  }, [language, t])
 
   const [categories, setCategories] = useState([
     { id: 1, name: "Entrantes", nameEn: "Starters", active: true, order: 1 },
@@ -35,18 +60,18 @@ export function Hero() {
 
   const menuCategories = [
     { id: "todos", name: "Todos", icon: "🍽️" },
-    { id: "Principal", name: "Principales", icon: "🥩" },
-    { id: "Pastas", name: "Pastas", icon: "🍝" },
-    { id: "Postre", name: "Postres", icon: "🍰" },
-    { id: "Bebida", name: "Bebidas", icon: "🥤" },
+    { id: "Principal", name: t("categories.main"), icon: "🥩" },
+    { id: "Pastas", name: t("categories.pasta"), icon: "🍝" },
+    { id: "Postre", name: t("categories.dessert"), icon: "🍰" },
+    { id: "Bebida", name: t("categories.drink"), icon: "🥤" },
   ]
 
   const allPlatos = [
-    { name: "Ribeye Steak", price: "€32", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop", category: "Principal", rating: 4.9, chefSuggestion: true },
-    { name: "Pasta con Trufa", price: "€24", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop", category: "Pastas", rating: 4.8, chefSuggestion: false },
-    { name: "Salmón a la Parrilla", price: "€28", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop", category: "Principal", rating: 4.9, chefSuggestion: true },
-    { name: "Tarta de Chocolate", price: "€9", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop", category: "Postre", rating: 4.9, chefSuggestion: false },
-    { name: "Mojito", price: "€12", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop", category: "Bebida", rating: 4.8, chefSuggestion: false },
+    { name: t("menu.ribeye"), price: "€32", image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop", category: t("categories.main"), rating: 4.9, chefSuggestion: true },
+    { name: t("menu.trufflePasta"), price: "€24", image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop", category: t("categories.pasta"), rating: 4.8, chefSuggestion: false },
+    { name: t("menu.salmon"), price: "€28", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&h=300&fit=crop", category: t("categories.main"), rating: 4.9, chefSuggestion: true },
+    { name: t("menu.chocolateCake"), price: "€9", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop", category: t("categories.dessert"), rating: 4.9, chefSuggestion: false },
+    { name: t("menu.mojito"), price: "€12", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=300&fit=crop", category: t("categories.drink"), rating: 4.8, chefSuggestion: false },
   ]
 
   const filteredPlatos = selectedCategory === "todos" 
@@ -99,7 +124,6 @@ export function Hero() {
           const logoY = (canvas.height - logoSize) / 2
           
           ctx.save()
-          // CUADRADO NEGRO en lugar de círculo blanco
           ctx.fillStyle = '#000000'
           ctx.fillRect(logoX - 5, logoY - 5, logoSize + 10, logoSize + 10)
           ctx.shadowColor = 'rgba(0,0,0,0.5)'
