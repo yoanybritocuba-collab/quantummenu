@@ -71,62 +71,7 @@ export function PricingSubscription() {
     },
   ]
 
-  // SECCIÓN 2: PACKS COMPLETOS
-  const packPlans = [
-    {
-      name: "Pack 8 QR",
-      price: 500,
-      description: "Web + QR + Carta + 8 QR físicos",
-      features: [
-        "Web completa responsive",
-        "QR funcional para menú",
-        "Carta digital interactiva",
-        "8 QR físicos (chapa láser)",
-        "Panel admin unificado",
-        "Hosting 1 año incluido",
-      ],
-      icon: <Gift className="w-6 h-6" />,
-      color: "from-red-500 to-orange-500",
-      badge: null,
-    },
-    {
-      name: "Pack 15 QR",
-      price: 530,
-      description: "Web + QR + Carta + 15 QR físicos",
-      features: [
-        "Web completa responsive",
-        "QR funcional para menú",
-        "Carta digital interactiva",
-        "15 QR físicos (chapa láser)",
-        "Panel admin unificado",
-        "Hosting 1 año incluido",
-        "Soporte prioritario",
-      ],
-      icon: <Star className="w-6 h-6" />,
-      color: "from-purple-500 to-pink-500",
-      badge: t("pricing.mostComplete"),
-    },
-    {
-      name: "Pack 20 QR",
-      price: 580,
-      description: "Web + QR + Carta + 20 QR físicos",
-      features: [
-        "Web completa responsive",
-        "QR funcional para menú",
-        "Carta digital interactiva",
-        "20 QR físicos (chapa láser)",
-        "Panel admin unificado",
-        "Hosting 1 año incluido",
-        "Soporte prioritario",
-        "Estadísticas avanzadas",
-      ],
-      icon: <Crown className="w-6 h-6" />,
-      color: "from-indigo-500 to-purple-500",
-      badge: "TODO INCLUIDO",
-    },
-  ]
-
-  // SECCIÓN 3: SUSCRIPCIÓN MENSUAL
+  // SECCIÓN 2: SUSCRIPCIÓN MENSUAL
   const monthlyPlans = [
     {
       name: t("pricing.planQr"),
@@ -184,7 +129,7 @@ export function PricingSubscription() {
     },
   ]
 
-  // SECCIÓN 4: DESARROLLO WEB
+  // SECCIÓN 3: DESARROLLO WEB
   const webPlans = [
     {
       name: t("pricing.webSimple"),
@@ -361,13 +306,10 @@ export function PricingSubscription() {
         {/* SECCIÓN 1: PAGO ÚNICO - QR */}
         <SectionCard title="💳 Pago Único - QR" subtitle="Soluciones QR para tu negocio" plans={oneTimePlans} />
 
-        {/* SECCIÓN 2: PACKS COMPLETOS */}
-        <SectionCard title="📦 Packs Completos" subtitle="Todo lo que necesitas en un solo pack" plans={packPlans} />
-
-        {/* SECCIÓN 3: SUSCRIPCIÓN MENSUAL */}
+        {/* SECCIÓN 2: SUSCRIPCIÓN MENSUAL */}
         <SectionCard title="🔄 Suscripción Mensual" subtitle="Sin permanencia, cancela cuando quieras" plans={monthlyPlans} />
 
-        {/* SECCIÓN 4: DESARROLLO WEB */}
+        {/* SECCIÓN 3: DESARROLLO WEB */}
         <SectionCard title="🌐 Desarrollo Web" subtitle="Sitios profesionales para tu negocio" plans={webPlans} />
 
         <motion.div
