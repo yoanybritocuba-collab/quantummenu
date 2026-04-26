@@ -32,6 +32,7 @@ export function PricingSubscription() {
         t("pricing.qrBasic.feature2"),
         t("pricing.qrBasic.feature3"),
         t("pricing.qrBasic.feature4"),
+        "Hosting 1 año gratis",
       ],
       icon: <QrCode className="w-6 h-6" />,
       color: "from-red-500 to-red-600",
@@ -46,6 +47,7 @@ export function PricingSubscription() {
         t("pricing.qrStandard.feature2"),
         t("pricing.qrStandard.feature3"),
         t("pricing.qrStandard.feature4"),
+        "Hosting 1 año gratis",
       ],
       icon: <Zap className="w-6 h-6" />,
       color: "from-purple-500 to-purple-600",
@@ -61,6 +63,7 @@ export function PricingSubscription() {
         t("pricing.qrPro.feature3"),
         t("pricing.qrPro.feature4"),
         t("pricing.qrPro.feature5"),
+        "Hosting 1 año gratis",
       ],
       icon: <Diamond className="w-6 h-6" />,
       color: "from-pink-500 to-pink-600",
@@ -193,6 +196,7 @@ export function PricingSubscription() {
         t("pricing.webSimple.feature3"),
         t("pricing.webSimple.feature4"),
         t("pricing.webSimple.feature5"),
+        "Hosting 1 año gratis",
       ],
       icon: <Layout className="w-6 h-6" />,
       color: "from-cyan-500 to-cyan-600",
@@ -209,6 +213,7 @@ export function PricingSubscription() {
         t("pricing.webAdvanced.feature4"),
         t("pricing.webAdvanced.feature5"),
         t("pricing.webAdvanced.feature6"),
+        "Hosting 1 año gratis",
       ],
       icon: <Rocket className="w-6 h-6" />,
       color: "from-indigo-500 to-indigo-600",
@@ -227,6 +232,7 @@ export function PricingSubscription() {
         "SEO avanzado + Analytics",
         "Dominio + SSL incluido",
         "Soporte 24/7",
+        "Hosting 1 año gratis",
       ],
       icon: <Globe className="w-6 h-6" />,
       color: "from-purple-500 to-pink-500",
@@ -296,17 +302,12 @@ export function PricingSubscription() {
                 <p className="text-green-500 text-[10px] mt-0.5">+ Hosting 1 año gratis</p>
               </div>
               <div className="space-y-1.5 mb-4">
-                {plan.features.slice(0, 4).map((feature: string, idx: number) => (
+                {plan.features.map((feature: string, idx: number) => (
                   <div key={idx} className="flex items-start gap-1.5">
                     <Check className="w-3 h-3 text-green-500 flex-shrink-0 mt-0.5" />
                     <span className="text-zinc-300 text-[10px] sm:text-xs leading-tight">{feature}</span>
                   </div>
                 ))}
-                {plan.features.length > 4 && (
-                  <div className="text-zinc-500 text-[9px] sm:text-[10px] mt-1 cursor-pointer hover:text-zinc-400 transition-colors">
-                    +{plan.features.length - 4} características más
-                  </div>
-                )}
               </div>
               <button
                 onClick={() => sendToWhatsApp(plan.name, plan.price, title.includes("Mensual") ? "Suscripción Mensual" : "Pago Único")}
