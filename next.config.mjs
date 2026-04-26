@@ -10,6 +10,12 @@ const nextConfig = {
     unoptimized: true,
   },
 
+  // DESACTIVAR INDICADOR DE DESARROLLO (logo de Vercel)
+  devIndicators: {
+    autoPrerender: false,
+    buildActivity: false,
+  },
+
   // AÑADIMOS LAS CABECERAS DE SEGURIDAD AQUÍ
   async headers() {
     return [
@@ -19,23 +25,23 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Impide que tu web sea "secuestrada" dentro de un iframe malicioso [citation:7][citation:10]
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff', // Evita que el navegador adivine el tipo de archivo [citation:7][citation:10]
+            value: 'nosniff',
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin', // Controla la información que se envía a otras webs [citation:10]
+            value: 'origin-when-cross-origin',
           },
           {
             key: 'X-XSS-Protection',
-            value: '1; mode=block', // Activa la protección contra Cross-Site Scripting (XSS) en navegadores antiguos [citation:10]
+            value: '1; mode=block',
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()', // Bloquea el acceso a la cámara, micrófono y geolocalización [citation:10]
+            value: 'camera=(), microphone=(), geolocation=()',
           },
         ],
       },

@@ -161,3 +161,32 @@
     border-color: oklch(0.65 0.25 25 / 0.3);
   }
 }
+
+/* ============================================
+   OCULTAR LOGO DE VERCEL (la "N" flotante)
+   ============================================ */
+
+/* Ocultar el enlace del logo de Vercel en modo desarrollo */
+a[href="https://vercel.com?utm_source=create-next-app&utm_medium=app-router&utm_campaign=nextjs"] {
+  display: none !important;
+}
+
+/* Ocultar cualquier elemento que contenga el logo de Vercel */
+svg[aria-label="Vercel Logo"] {
+  display: none !important;
+}
+
+/* Ocultar el footer de Vercel (Next.js) */
+footer a[href*="vercel.com"] {
+  display: none !important;
+}
+
+/* Ocultar elementos fijos sospechosos (logo flotante) */
+body > div:first-child:last-child:not([class]):not([id]) {
+  display: none !important;
+}
+
+/* Ocultar el toolbar de Next.js en desarrollo */
+nextjs-portal {
+  display: none !important;
+}
