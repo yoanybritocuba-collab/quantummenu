@@ -75,7 +75,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "info.line2": "🎉 OFERTA ESPECIAL: 2x1 en postres todos los viernes",
     "info.line3": "⭐ EVENTO: Cata de vinos este sábado a las 20:00h",
 
-    // Pricing
+    // Pricing - Generales
     "pricing.badge": "PRECIOS EN EUROS",
     "pricing.title1": "Elige tu",
     "pricing.title2": "Plan Ideal",
@@ -84,12 +84,33 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.monthly": "Suscripción Mensual",
     "pricing.save": "AHORRA",
     "pricing.hostingFree": "Hosting 1 año gratis",
+    "pricing.hostingFreeYear": "Hosting 1 año gratis",
+    "pricing.hire": "Contratar",
     "pricing.hireWhatsapp": "Contratar por WhatsApp",
     "pricing.subscribeWhatsapp": "Suscribirme por WhatsApp",
     "pricing.allPlansInclude": "Todos los planes incluyen: Hosting seguro • Actualizaciones gratuitas • Soporte técnico",
+    "pricing.allPlansIncludeNote": "🔥 Todos los planes incluyen: Hosting seguro • Actualizaciones gratuitas • Soporte técnico",
     "pricing.qrNote": "Los QR físicos son de chapa con grabado láser de alta calidad • Se envían por mensajería (costo de envío no incluido)",
+    "pricing.pro": "PRO",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "Soluciones QR para tu negocio",
+    "pricing.monthlySubtitle": "Sin permanencia, cancela cuando quieras",
+    "pricing.webDevelopment": "Desarrollo Web",
+    "pricing.webSubtitle": "Sitios profesionales para tu negocio",
 
-    // Planes Pago Único
+    // Planes Web Premium
+    "pricing.webPremium": "Web Premium",
+    "pricing.webPremiumDesc": "E-commerce · tienda online · pasarela de pagos",
+    "pricing.webPremium.feature1": "Diseño responsive premium",
+    "pricing.webPremium.feature2": "Tienda online integrada",
+    "pricing.webPremium.feature3": "Pasarela de pagos",
+    "pricing.webPremium.feature4": "Carrito de compras",
+    "pricing.webPremium.feature5": "SEO avanzado + Analytics",
+    "pricing.webPremium.feature6": "Dominio + SSL incluido",
+    "pricing.webPremium.feature7": "Soporte 24/7",
+
+    // Planes Pago Único QR
     "pricing.qrBasic": "QR Básico",
     "pricing.qrBasicDesc": "10 adhesivos · soporte WhatsApp",
     "pricing.qrBasic.feature1": "QR funcional para menú digital",
@@ -112,6 +133,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.qrPro.feature4": "Panel de administración premium",
     "pricing.qrPro.feature5": "Diseño personalizado del QR",
 
+    // Planes Web
     "pricing.webSimple": "Web Simple",
     "pricing.webSimpleDesc": "Hasta 5 páginas · profesional y responsive",
     "pricing.webSimple.feature1": "Diseño responsive",
@@ -186,14 +208,12 @@ export const translations: Record<Language, Record<string, string>> = {
     "menu.chocolateCake": "Tarta de Chocolate",
     "menu.mojito": "Mojito",
 
-    // Categorías para móviles demo
+    // Categorías
     "categories.main": "Principales",
     "categories.pasta": "Pastas",
     "categories.pizza": "Pizza",
     "categories.dessert": "Postres",
     "categories.drink": "Bebidas",
-
-    // Categorías para el segundo móvil (Gestión de Categorías)
     "categories.entrantes": "Entrantes",
     "categories.entrantesEn": "Starters",
     "categories.principales": "Platos Principales",
@@ -203,7 +223,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "categories.bebidas": "Bebidas",
     "categories.bebidasEn": "Drinks",
 
-    // Sección de servicios
+    // Servicios
     "services.title1": "SERVICIOS",
     "services.title2": "PREMIUM",
     "services.subtitle": "Soluciones digitales para tu negocio",
@@ -312,21 +332,42 @@ export const translations: Record<Language, Record<string, string>> = {
     "info.line2": "🎉 SPECIAL OFFER: 2x1 on desserts every Friday",
     "info.line3": "⭐ EVENT: Wine tasting this Saturday at 8pm",
 
-    // Pricing
+    // Pricing - Generales
     "pricing.badge": "PRICES IN EUROS",
     "pricing.title1": "Choose your",
     "pricing.title2": "Ideal Plan",
     "pricing.subtitle": "No surprises or hidden costs. Choose the plan that best fits your business.",
     "pricing.oneTime": "One Time",
-    "pricing.monthly": "Monthly",
+    "pricing.monthly": "Monthly Subscription",
     "pricing.save": "SAVE",
     "pricing.hostingFree": "1 year free hosting",
+    "pricing.hostingFreeYear": "1 year free hosting",
+    "pricing.hire": "Hire",
     "pricing.hireWhatsapp": "Hire via WhatsApp",
     "pricing.subscribeWhatsapp": "Subscribe via WhatsApp",
     "pricing.allPlansInclude": "All plans include: Secure hosting • Free updates • Technical support",
+    "pricing.allPlansIncludeNote": "🔥 All plans include: Secure hosting • Free updates • Technical support",
     "pricing.qrNote": "Physical QR codes are laser engraved on metal plate • Shipping costs not included",
+    "pricing.pro": "PRO",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "QR solutions for your business",
+    "pricing.monthlySubtitle": "No commitment, cancel anytime",
+    "pricing.webDevelopment": "Web Development",
+    "pricing.webSubtitle": "Professional websites for your business",
 
-    // Planes Pago Único
+    // Planes Web Premium
+    "pricing.webPremium": "Web Premium",
+    "pricing.webPremiumDesc": "E-commerce · online store · payment gateway",
+    "pricing.webPremium.feature1": "Premium responsive design",
+    "pricing.webPremium.feature2": "Integrated online store",
+    "pricing.webPremium.feature3": "Payment gateway",
+    "pricing.webPremium.feature4": "Shopping cart",
+    "pricing.webPremium.feature5": "Advanced SEO + Analytics",
+    "pricing.webPremium.feature6": "Domain + SSL included",
+    "pricing.webPremium.feature7": "24/7 Support",
+
+    // Planes Pago Único QR
     "pricing.qrBasic": "Basic QR",
     "pricing.qrBasicDesc": "10 stickers · WhatsApp support",
     "pricing.qrBasic.feature1": "Functional QR for digital menu",
@@ -483,26 +524,35 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.tagline": "For businesses going digital",
   },
   ru: {
+    // Navegación
     "nav.projects": "Проекты",
     "nav.demos": "Демо",
     "nav.services": "Услуги",
     "nav.pricing": "Цены",
     "nav.contact": "Контакты",
     "nav.getQuote": "Запросить цену",
+
+    // Hero
     "hero.badge": "ЦИФРОВОЕ РЕШЕНИЕ",
     "hero.title1": "ЦИФРОВИЗИРУЙТЕ",
     "hero.title2": "ВАШ БИЗНЕС",
     "hero.subtitle": "Преобразите ресторан с QR-меню",
     "hero.button": "Сканировать QR",
     "hero.imageCaption": "Создание сайтов и цифровых QR-меню",
+
+    // Letreros animados
     "hero.phrase1": "Создание профессиональных сайтов",
     "hero.phrase2": "Цифровые QR-меню",
     "hero.phrase3": "Ваш бизнес в сканере",
     "hero.phrase4": "Простое и быстрое управление",
+
+    // Functions
     "functions.badge": "УМНЫЕ ИНСТРУМЕНТЫ",
     "functions.title1": "Функции, которые",
     "functions.title2": "облегчают работу",
     "functions.subtitle": "Управляйте рестораном из одного места",
+
+    // Demos
     "demo.productos": "Управление товарами",
     "demo.categorias": "Управление категориями",
     "demo.config": "Настройки",
@@ -510,12 +560,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "demo.categoriasHint": "Включите или отключите категории",
     "demo.order": "Порядок",
     "demo.suggested": "Рекомендация шеф-повара",
+
+    // Admin
     "admin.available": "Доступно",
     "admin.soldOut": "Продано",
     "admin.suggested": "Рекомендуется",
     "admin.highlight": "Выделить",
     "admin.active": "Активна",
     "admin.inactive": "Неактивна",
+
+    // Config
     "config.infoLine": "ИНФОРМАЦИОННАЯ ЛИНИЯ",
     "config.systemUpdated": "Система обновлена",
     "config.lastSync": "Последняя синхронизация",
@@ -528,33 +582,62 @@ export const translations: Record<Language, Record<string, string>> = {
     "config.satSun": "Сб-Вс",
     "config.nextHoliday": "Следующий праздник",
     "config.closed": "Закрыто",
+
+    // Línea informativa
     "info.line1": "📢 ИНФОРМАЦИОННАЯ ЛИНИЯ - Новое блюдо! Попробуйте Рибай Стейк с трюфельным гарниром",
     "info.line2": "🎉 СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ: 2x1 на десерты каждую пятницу",
     "info.line3": "⭐ СОБЫТИЕ: Дегустация вин в субботу в 20:00",
+
+    // Pricing - Generales
     "pricing.badge": "ЦЕНЫ В ЕВРО",
     "pricing.title1": "Выберите",
     "pricing.title2": "Идеальный план",
     "pricing.subtitle": "Без сюрпризов и скрытых затрат.",
     "pricing.oneTime": "Разовый платеж",
-    "pricing.monthly": "Ежемесячно",
+    "pricing.monthly": "Ежемесячная подписка",
     "pricing.save": "ЭКОНОМИЯ",
     "pricing.hostingFree": "1 год хостинга бесплатно",
+    "pricing.hostingFreeYear": "Хостинг 1 год бесплатно",
+    "pricing.hire": "Заказать",
     "pricing.hireWhatsapp": "Заказать через WhatsApp",
     "pricing.subscribeWhatsapp": "Подписаться через WhatsApp",
     "pricing.allPlansInclude": "Все планы включают: Безопасный хостинг • Бесплатные обновления • Техподдержку",
+    "pricing.allPlansIncludeNote": "🔥 Все планы включают: Безопасный хостинг • Бесплатные обновления • Техподдержку",
     "pricing.qrNote": "Физические QR-коды с лазерной гравировкой • Стоимость доставки не включена",
+    "pricing.pro": "ПРО",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "QR решения для вашего бизнеса",
+    "pricing.monthlySubtitle": "Без обязательств, отмена в любое время",
+    "pricing.webDevelopment": "Веб-разработка",
+    "pricing.webSubtitle": "Профессиональные сайты для вашего бизнеса",
+
+    // Planes Web Premium
+    "pricing.webPremium": "Веб Премиум",
+    "pricing.webPremiumDesc": "Электронная коммерция · интернет-магазин · платежный шлюз",
+    "pricing.webPremium.feature1": "Премиум адаптивный дизайн",
+    "pricing.webPremium.feature2": "Интегрированный интернет-магазин",
+    "pricing.webPremium.feature3": "Платежный шлюз",
+    "pricing.webPremium.feature4": "Корзина покупок",
+    "pricing.webPremium.feature5": "Продвинутая SEO + Аналитика",
+    "pricing.webPremium.feature6": "Домен + SSL включены",
+    "pricing.webPremium.feature7": "Поддержка 24/7",
+
+    // Planes Pago Único QR
     "pricing.qrBasic": "QR Базовый",
     "pricing.qrBasicDesc": "10 стикеров · поддержка WhatsApp",
     "pricing.qrBasic.feature1": "Функциональный QR для цифрового меню",
     "pricing.qrBasic.feature2": "Интерактивное цифровое меню",
     "pricing.qrBasic.feature3": "10 стикеров с QR-кодом",
     "pricing.qrBasic.feature4": "Поддержка WhatsApp",
+
     "pricing.qrStandard": "QR Стандарт",
     "pricing.qrStandardDesc": "20 стикеров · поддержка WhatsApp",
     "pricing.qrStandard.feature1": "Функциональный QR для цифрового меню",
     "pricing.qrStandard.feature2": "Интерактивное цифровое меню",
     "pricing.qrStandard.feature3": "20 стикеров с QR-кодом",
     "pricing.qrStandard.feature4": "Поддержка WhatsApp",
+
     "pricing.qrPro": "QR Pro",
     "pricing.qrProDesc": "30 стикеров · премиум панель · индивидуальный дизайн",
     "pricing.qrPro.feature1": "Функциональный QR для цифрового меню",
@@ -562,6 +645,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.qrPro.feature3": "30 стикеров с QR-кодом",
     "pricing.qrPro.feature4": "Премиум панель администратора",
     "pricing.qrPro.feature5": "Индивидуальный дизайн QR",
+
     "pricing.webSimple": "Простой сайт",
     "pricing.webSimpleDesc": "До 5 страниц · профессиональный и адаптивный",
     "pricing.webSimple.feature1": "Адаптивный дизайн",
@@ -569,6 +653,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.webSimple.feature3": "Контактная форма",
     "pricing.webSimple.feature4": "Базовая SEO",
     "pricing.webSimple.feature5": "Интеграция с соцсетями",
+
     "pricing.webAdvanced": "Продвинутый сайт",
     "pricing.webAdvancedDesc": "Неограниченные страницы · блог · аналитика",
     "pricing.webAdvanced.feature1": "Премиум адаптивный дизайн",
@@ -577,6 +662,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.webAdvanced.feature4": "Продвинутая SEO",
     "pricing.webAdvanced.feature5": "Панель аналитики",
     "pricing.webAdvanced.feature6": "Индивидуальный домен",
+
     "pricing.pack15qr": "Полный пакет · 15 QR",
     "pricing.pack15qrDesc": "Сайт + QR + Меню + 15 физических QR-кодов",
     "pricing.pack15qr.feature1": "Полный адаптивный сайт",
@@ -586,6 +672,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.pack15qr.feature5": "Унифицированная панель администратора",
     "pricing.pack15qr.feature6": "Приоритетная поддержка",
     "pricing.pack15qr.feature7": "Расширенная статистика",
+
+    // Planes Mensuales
     "pricing.planQr": "QR План",
     "pricing.planQrDesc": "QR + Цифровое меню + 10 QR стикеров",
     "pricing.planQr.feature1": "Функциональный QR для цифрового меню",
@@ -595,6 +683,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planQr.feature5": "Обновления в реальном времени",
     "pricing.planQr.feature6": "Поддержка по email",
     "pricing.planQr.feature7": "Хостинг включен",
+
     "pricing.planQrPlus": "QR+ План",
     "pricing.planQrPlusDesc": "QR + Цифровое меню + 15 QR стикеров",
     "pricing.planQrPlus.feature1": "Функциональный QR для цифрового меню",
@@ -605,6 +694,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planQrPlus.feature6": "Приоритетная поддержка",
     "pricing.planQrPlus.feature7": "Статистика сканирований",
     "pricing.planQrPlus.feature8": "Хостинг включен",
+
     "pricing.planFull": "Полный план",
     "pricing.planFullDesc": "Сайт + QR + Меню + 20 QR стикеров",
     "pricing.planFull.feature1": "Полный адаптивный сайт",
@@ -616,15 +706,21 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planFull.feature7": "Поддержка 24/7",
     "pricing.planFull.feature8": "Хостинг + Домен включены",
     "pricing.planFull.feature9": "Расширенная статистика",
+
+    // Badges
     "pricing.mostSold": "САМЫЙ ПОПУЛЯРНЫЙ",
     "pricing.recommended": "РЕКОМЕНДУЕМЫЙ",
     "pricing.mostComplete": "ЛУЧШАЯ ЦЕННОСТЬ · ЭКОНОМИЯ ВКЛЮЧЕНА",
+
+    // Menú productos demo
     "menu.ribeye": "Рибай Стейк",
     "menu.trufflePasta": "Паста с Трюфелем",
     "menu.margherita": "Пицца Маргарита",
     "menu.salmon": "Лосось на Гриле",
     "menu.chocolateCake": "Шоколадный Торт",
     "menu.mojito": "Мохито",
+
+    // Categorías
     "categories.main": "Основное",
     "categories.pasta": "Паста",
     "categories.pizza": "Пицца",
@@ -638,6 +734,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "categories.postresEn": "Desserts",
     "categories.bebidas": "Напитки",
     "categories.bebidasEn": "Drinks",
+
+    // Servicios
     "services.title1": "ПРЕМИУМ",
     "services.title2": "УСЛУГИ",
     "services.subtitle": "Полные цифровые решения для вашего бизнеса",
@@ -659,12 +757,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.benefit1": "Быстрая доставка",
     "services.benefit2": "Безопасно и надежно",
     "services.benefit3": "Непрерывная поддержка",
+
+    // Ventajas
     "advantages.title": "КОНКУРЕНТНЫЕ ПРЕИМУЩЕСТВА",
     "advantages.subtitle": "Почему выбирают нас?",
     "stats.projects": "Завершенных проектов",
     "stats.satisfaction": "Довольных клиентов",
     "stats.delivery": "Недель доставки",
     "stats.support": "Техподдержка",
+
+    // Contacto
     "contact.title1": "Давайте",
     "contact.title2": "поговорим",
     "contact.subtitle": "Преобразите свой бизнес сегодня",
@@ -672,30 +774,41 @@ export const translations: Record<Language, Record<string, string>> = {
     "contact.whatsappDesc": "Быстрый ответ",
     "contact.email": "Email",
     "contact.emailDesc": "Детальные вопросы",
+
+    // Footer
     "footer.rights": "Все права защищены",
     "footer.tagline": "Для бизнеса, который хочет стать цифровым",
   },
   zh: {
+    // Navegación
     "nav.projects": "项目",
     "nav.demos": "演示",
     "nav.services": "服务",
     "nav.pricing": "价格",
     "nav.contact": "联系",
     "nav.getQuote": "获取报价",
+
+    // Hero
     "hero.badge": "数字解决方案",
     "hero.title1": "数字化",
     "hero.title2": "您的业务",
     "hero.subtitle": "使用二维码菜单改造餐厅",
     "hero.button": "扫描演示二维码",
     "hero.imageCaption": "网站创建和数字二维码菜单",
+
+    // Letreros animados
     "hero.phrase1": "专业网站创建",
     "hero.phrase2": "数字二维码菜单",
     "hero.phrase3": "您的业务在扫描器中",
     "hero.phrase4": "简单快速的管理",
+
+    // Functions
     "functions.badge": "智能工具",
     "functions.title1": "让您的工作",
     "functions.title2": "更轻松的功能",
     "functions.subtitle": "通过我们的直观工具从一个地方管理您的餐厅",
+
+    // Demos
     "demo.productos": "产品管理",
     "demo.categorias": "分类管理",
     "demo.config": "设置",
@@ -703,12 +816,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "demo.categoriasHint": "轻松启用/禁用分类",
     "demo.order": "顺序",
     "demo.suggested": "主厨推荐",
+
+    // Admin
     "admin.available": "可用",
     "admin.soldOut": "售罄",
     "admin.suggested": "推荐",
     "admin.highlight": "突出显示",
     "admin.active": "激活",
     "admin.inactive": "停用",
+
+    // Config
     "config.infoLine": "信息线",
     "config.systemUpdated": "系统已更新",
     "config.lastSync": "最后同步",
@@ -721,33 +838,62 @@ export const translations: Record<Language, Record<string, string>> = {
     "config.satSun": "周六至周日",
     "config.nextHoliday": "下一个假期",
     "config.closed": "关闭",
+
+    // Línea informativa
     "info.line1": "📢 信息线 - 新菜品！品尝我们的肋眼牛排配松露",
     "info.line2": "🎉 特别优惠：每周五甜点买一送一",
     "info.line3": "⭐ 活动：周六晚上8点品酒会",
+
+    // Pricing - Generales
     "pricing.badge": "欧元价格",
     "pricing.title1": "选择您的",
     "pricing.title2": "理想方案",
     "pricing.subtitle": "无惊喜或隐藏费用。选择最适合您业务的方案。",
     "pricing.oneTime": "一次性付款",
-    "pricing.monthly": "月付",
+    "pricing.monthly": "月订阅",
     "pricing.save": "节省",
     "pricing.hostingFree": "1年免费托管",
+    "pricing.hostingFreeYear": "托管1年免费",
+    "pricing.hire": "购买",
     "pricing.hireWhatsapp": "通过WhatsApp购买",
     "pricing.subscribeWhatsapp": "通过WhatsApp订阅",
     "pricing.allPlansInclude": "所有计划包括：安全托管 • 免费更新 • 技术支持",
+    "pricing.allPlansIncludeNote": "🔥 所有计划包括：安全托管 • 免费更新 • 技术支持",
     "pricing.qrNote": "物理二维码为激光雕刻金属板 • 运费不包括在内",
+    "pricing.pro": "专业版",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "为您的业务提供二维码解决方案",
+    "pricing.monthlySubtitle": "无承诺，随时取消",
+    "pricing.webDevelopment": "网站开发",
+    "pricing.webSubtitle": "为您的业务提供专业网站",
+
+    // Planes Web Premium
+    "pricing.webPremium": "高级网站",
+    "pricing.webPremiumDesc": "电子商务 · 在线商店 · 支付网关",
+    "pricing.webPremium.feature1": "高级响应式设计",
+    "pricing.webPremium.feature2": "集成在线商店",
+    "pricing.webPremium.feature3": "支付网关",
+    "pricing.webPremium.feature4": "购物车",
+    "pricing.webPremium.feature5": "高级SEO + 分析",
+    "pricing.webPremium.feature6": "域名 + SSL包含",
+    "pricing.webPremium.feature7": "24/7支持",
+
+    // Planes Pago Único QR
     "pricing.qrBasic": "基础二维码",
     "pricing.qrBasicDesc": "10个贴纸 · WhatsApp支持",
     "pricing.qrBasic.feature1": "功能二维码用于数字菜单",
     "pricing.qrBasic.feature2": "交互式数字菜单",
     "pricing.qrBasic.feature3": "10个二维码贴纸",
     "pricing.qrBasic.feature4": "WhatsApp支持",
+
     "pricing.qrStandard": "标准二维码",
     "pricing.qrStandardDesc": "20个贴纸 · WhatsApp支持",
     "pricing.qrStandard.feature1": "功能二维码用于数字菜单",
     "pricing.qrStandard.feature2": "交互式数字菜单",
     "pricing.qrStandard.feature3": "20个二维码贴纸",
     "pricing.qrStandard.feature4": "WhatsApp支持",
+
     "pricing.qrPro": "专业二维码",
     "pricing.qrProDesc": "30个贴纸 · 高级面板 · 自定义设计",
     "pricing.qrPro.feature1": "功能二维码用于数字菜单",
@@ -755,6 +901,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.qrPro.feature3": "30个二维码贴纸",
     "pricing.qrPro.feature4": "高级管理面板",
     "pricing.qrPro.feature5": "自定义二维码设计",
+
     "pricing.webSimple": "简单网站",
     "pricing.webSimpleDesc": "最多5页 · 专业且响应式",
     "pricing.webSimple.feature1": "响应式设计",
@@ -762,6 +909,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.webSimple.feature3": "联系表单",
     "pricing.webSimple.feature4": "基础SEO",
     "pricing.webSimple.feature5": "社交媒体集成",
+
     "pricing.webAdvanced": "高级网站",
     "pricing.webAdvancedDesc": "无限页面 · 博客 · 分析",
     "pricing.webAdvanced.feature1": "高级响应式设计",
@@ -770,6 +918,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.webAdvanced.feature4": "高级SEO",
     "pricing.webAdvanced.feature5": "分析面板",
     "pricing.webAdvanced.feature6": "自定义域名",
+
     "pricing.pack15qr": "完整套餐 · 15 QR",
     "pricing.pack15qrDesc": "网站 + 二维码 + 菜单 + 15个物理二维码",
     "pricing.pack15qr.feature1": "完整响应式网站",
@@ -779,6 +928,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.pack15qr.feature5": "统一管理面板",
     "pricing.pack15qr.feature6": "优先支持",
     "pricing.pack15qr.feature7": "高级统计",
+
+    // Planes Mensuales
     "pricing.planQr": "二维码计划",
     "pricing.planQrDesc": "二维码 + 数字菜单 + 10个二维码贴纸",
     "pricing.planQr.feature1": "功能二维码用于数字菜单",
@@ -788,6 +939,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planQr.feature5": "实时更新",
     "pricing.planQr.feature6": "邮件支持",
     "pricing.planQr.feature7": "托管包含",
+
     "pricing.planQrPlus": "二维码+计划",
     "pricing.planQrPlusDesc": "二维码 + 数字菜单 + 15个二维码贴纸",
     "pricing.planQrPlus.feature1": "功能二维码用于数字菜单",
@@ -798,6 +950,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planQrPlus.feature6": "优先支持",
     "pricing.planQrPlus.feature7": "扫描统计",
     "pricing.planQrPlus.feature8": "托管包含",
+
     "pricing.planFull": "完整计划",
     "pricing.planFullDesc": "网站 + 二维码 + 菜单 + 20个二维码贴纸",
     "pricing.planFull.feature1": "完整响应式网站",
@@ -809,15 +962,21 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.planFull.feature7": "24/7支持",
     "pricing.planFull.feature8": "托管 + 域名包含",
     "pricing.planFull.feature9": "高级统计",
+
+    // Badges
     "pricing.mostSold": "最受欢迎",
     "pricing.recommended": "推荐",
     "pricing.mostComplete": "最佳价值 · 包含节省",
+
+    // Menú productos demo
     "menu.ribeye": "肋眼牛排",
     "menu.trufflePasta": "松露意大利面",
     "menu.margherita": "玛格丽特披萨",
     "menu.salmon": "烤三文鱼",
     "menu.chocolateCake": "巧克力蛋糕",
     "menu.mojito": "莫吉托",
+
+    // Categorías
     "categories.main": "主菜",
     "categories.pasta": "面食",
     "categories.pizza": "披萨",
@@ -831,6 +990,8 @@ export const translations: Record<Language, Record<string, string>> = {
     "categories.postresEn": "Desserts",
     "categories.bebidas": "饮料",
     "categories.bebidasEn": "Drinks",
+
+    // Servicios
     "services.title1": "优质",
     "services.title2": "服务",
     "services.subtitle": "为您的业务提供完整的数字解决方案",
@@ -852,12 +1013,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "services.benefit1": "快速交付",
     "services.benefit2": "安全可靠",
     "services.benefit3": "持续支持",
+
+    // Ventajas
     "advantages.title": "竞争优势",
     "advantages.subtitle": "为什么选择我们？",
     "stats.projects": "已完成项目",
     "stats.satisfaction": "满意客户",
     "stats.delivery": "交付周数",
     "stats.support": "技术支持",
+
+    // Contacto
     "contact.title1": "让我们",
     "contact.title2": "交谈",
     "contact.subtitle": "今天就改变您的业务",
@@ -865,30 +1030,41 @@ export const translations: Record<Language, Record<string, string>> = {
     "contact.whatsappDesc": "快速响应",
     "contact.email": "邮箱",
     "contact.emailDesc": "详细咨询",
+
+    // Footer
     "footer.rights": "版权所有",
     "footer.tagline": "为想要数字化的企业",
   },
   fr: {
+    // Navegación
     "nav.projects": "Projets",
     "nav.demos": "Démos",
     "nav.services": "Services",
     "nav.pricing": "Tarifs",
     "nav.contact": "Contact",
     "nav.getQuote": "Demander un devis",
+
+    // Hero
     "hero.badge": "SOLUTION NUMÉRIQUE",
     "hero.title1": "NUMÉRISEZ",
     "hero.title2": "VOTRE ENTREPRISE",
     "hero.subtitle": "Transformez votre restaurant avec des menus QR",
     "hero.button": "Scanner la démo QR",
     "hero.imageCaption": "Création de sites web et menus QR numériques",
+
+    // Letreros animados
     "hero.phrase1": "Création de sites web professionnels",
     "hero.phrase2": "Menus QR numériques",
     "hero.phrase3": "Votre entreprise dans un scanner",
     "hero.phrase4": "Gestion simple et rapide",
+
+    // Functions
     "functions.badge": "OUTILS INTELLIGENTS",
     "functions.title1": "Des fonctionnalités qui vous",
     "functions.title2": "facilitent le travail",
     "functions.subtitle": "Gérez votre restaurant depuis un seul endroit",
+
+    // Demos
     "demo.productos": "Gestion des produits",
     "demo.categorias": "Gestion des catégories",
     "demo.config": "Configuration",
@@ -896,12 +1072,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "demo.categoriasHint": "Activez ou désactivez les catégories",
     "demo.order": "Ordre",
     "demo.suggested": "Suggestion du chef",
+
+    // Admin
     "admin.available": "Disponible",
     "admin.soldOut": "Épuisé",
     "admin.suggested": "Suggéré",
     "admin.highlight": "Mettre en avant",
     "admin.active": "Active",
     "admin.inactive": "Inactive",
+
+    // Config
     "config.infoLine": "LIGNE D'INFO",
     "config.systemUpdated": "Système mis à jour",
     "config.lastSync": "Dernière synchronisation",
@@ -914,9 +1094,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "config.satSun": "Samedi à Dimanche",
     "config.nextHoliday": "Prochain jour férié",
     "config.closed": "Fermé",
+
+    // Línea informativa
     "info.line1": "📢 LIGNE D'INFO - Nouveau plat! Essayez notre Ribeye Steak",
     "info.line2": "🎉 OFFRE SPÉCIALE: 2x1 sur les desserts chaque vendredi",
     "info.line3": "⭐ ÉVÉNEMENT: Dégustation de vins ce samedi à 20h",
+
+    // Pricing - Generales
     "pricing.badge": "PRIX EN EUROS",
     "pricing.title1": "Choisissez",
     "pricing.title2": "Votre Plan Idéal",
@@ -925,16 +1109,130 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.monthly": "Abonnement mensuel",
     "pricing.save": "ÉCONOMISEZ",
     "pricing.hostingFree": "1 an d'hébergement gratuit",
+    "pricing.hostingFreeYear": "Hébergement 1 an gratuit",
+    "pricing.hire": "Acheter",
     "pricing.hireWhatsapp": "Acheter via WhatsApp",
     "pricing.subscribeWhatsapp": "S'abonner via WhatsApp",
     "pricing.allPlansInclude": "Tous les plans incluent : Hébergement sécurisé • Mises à jour gratuites • Support technique",
+    "pricing.allPlansIncludeNote": "🔥 Tous les plans incluent : Hébergement sécurisé • Mises à jour gratuites • Support technique",
     "pricing.qrNote": "Les QR physiques sont gravés au laser sur métal • Frais d'expédition non inclus",
+    "pricing.pro": "PRO",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "Solutions QR pour votre entreprise",
+    "pricing.monthlySubtitle": "Sans engagement, annulez à tout moment",
+    "pricing.webDevelopment": "Développement Web",
+    "pricing.webSubtitle": "Sites web professionnels pour votre entreprise",
+
+    // Planes Web Premium
+    "pricing.webPremium": "Web Premium",
+    "pricing.webPremiumDesc": "E-commerce · boutique en ligne · passerelle de paiement",
+    "pricing.webPremium.feature1": "Design responsive premium",
+    "pricing.webPremium.feature2": "Boutique en ligne intégrée",
+    "pricing.webPremium.feature3": "Passerelle de paiement",
+    "pricing.webPremium.feature4": "Panier d'achat",
+    "pricing.webPremium.feature5": "SEO avancé + Analytics",
+    "pricing.webPremium.feature6": "Domaine + SSL inclus",
+    "pricing.webPremium.feature7": "Support 24/7",
+
+    // Planes Pago Único QR
+    "pricing.qrBasic": "QR Basique",
+    "pricing.qrBasicDesc": "10 autocollants · support WhatsApp",
+    "pricing.qrBasic.feature1": "QR fonctionnel pour menu numérique",
+    "pricing.qrBasic.feature2": "Menu numérique interactif",
+    "pricing.qrBasic.feature3": "10 autocollants QR",
+    "pricing.qrBasic.feature4": "Support WhatsApp",
+
+    "pricing.qrStandard": "QR Standard",
+    "pricing.qrStandardDesc": "20 autocollants · support WhatsApp",
+    "pricing.qrStandard.feature1": "QR fonctionnel pour menu numérique",
+    "pricing.qrStandard.feature2": "Menu numérique interactif",
+    "pricing.qrStandard.feature3": "20 autocollants QR",
+    "pricing.qrStandard.feature4": "Support WhatsApp",
+
+    "pricing.qrPro": "QR Pro",
+    "pricing.qrProDesc": "30 autocollants · panneau premium · design personnalisé",
+    "pricing.qrPro.feature1": "QR fonctionnel pour menu numérique",
+    "pricing.qrPro.feature2": "Menu numérique interactif",
+    "pricing.qrPro.feature3": "30 autocollants QR",
+    "pricing.qrPro.feature4": "Panneau d'administration premium",
+    "pricing.qrPro.feature5": "Design QR personnalisé",
+
+    "pricing.webSimple": "Site Simple",
+    "pricing.webSimpleDesc": "Jusqu'à 5 pages · professionnel et responsive",
+    "pricing.webSimple.feature1": "Design responsive",
+    "pricing.webSimple.feature2": "Jusqu'à 5 pages",
+    "pricing.webSimple.feature3": "Formulaire de contact",
+    "pricing.webSimple.feature4": "SEO de base",
+    "pricing.webSimple.feature5": "Intégration des réseaux sociaux",
+
+    "pricing.webAdvanced": "Site Avancé",
+    "pricing.webAdvancedDesc": "Pages illimitées · blog · analytics",
+    "pricing.webAdvanced.feature1": "Design responsive premium",
+    "pricing.webAdvanced.feature2": "Pages illimitées",
+    "pricing.webAdvanced.feature3": "Blog intégré",
+    "pricing.webAdvanced.feature4": "SEO avancé",
+    "pricing.webAdvanced.feature5": "Panneau d'analytique",
+    "pricing.webAdvanced.feature6": "Domaine personnalisé",
+
+    "pricing.pack15qr": "Pack Complet · 15 QR",
+    "pricing.pack15qrDesc": "Site + QR + Menu + 15 QR physiques",
+    "pricing.pack15qr.feature1": "Site complet responsive",
+    "pricing.pack15qr.feature2": "QR fonctionnel pour menu",
+    "pricing.pack15qr.feature3": "Menu numérique interactif",
+    "pricing.pack15qr.feature4": "15 QR (métal ou autocollants)",
+    "pricing.pack15qr.feature5": "Panneau d'administration unifié",
+    "pricing.pack15qr.feature6": "Support prioritaire",
+    "pricing.pack15qr.feature7": "Statistiques avancées",
+
+    // Planes Mensuales
+    "pricing.planQr": "Plan QR",
+    "pricing.planQrDesc": "QR + Menu Digital + 10 autocollants QR",
+    "pricing.planQr.feature1": "QR fonctionnel pour menu numérique",
+    "pricing.planQr.feature2": "Menu numérique interactif",
+    "pricing.planQr.feature3": "10 autocollants QR",
+    "pricing.planQr.feature4": "Panneau d'administration",
+    "pricing.planQr.feature5": "Mises à jour en temps réel",
+    "pricing.planQr.feature6": "Support par email",
+    "pricing.planQr.feature7": "Hébergement inclus",
+
+    "pricing.planQrPlus": "Plan QR+",
+    "pricing.planQrPlusDesc": "QR + Menu Digital + 15 autocollants QR",
+    "pricing.planQrPlus.feature1": "QR fonctionnel pour menu numérique",
+    "pricing.planQrPlus.feature2": "Menu numérique interactif",
+    "pricing.planQrPlus.feature3": "15 autocollants QR",
+    "pricing.planQrPlus.feature4": "Panneau d'administration complet",
+    "pricing.planQrPlus.feature5": "Mises à jour en temps réel",
+    "pricing.planQrPlus.feature6": "Support prioritaire",
+    "pricing.planQrPlus.feature7": "Statistiques de scan",
+    "pricing.planQrPlus.feature8": "Hébergement inclus",
+
+    "pricing.planFull": "Plan Complet",
+    "pricing.planFullDesc": "Site + QR + Menu + 20 autocollants QR",
+    "pricing.planFull.feature1": "Site complet responsive",
+    "pricing.planFull.feature2": "QR fonctionnel pour menu",
+    "pricing.planFull.feature3": "Menu numérique interactif",
+    "pricing.planFull.feature4": "20 autocollants QR",
+    "pricing.planFull.feature5": "Panneau d'administration unifié",
+    "pricing.planFull.feature6": "Mises à jour illimitées",
+    "pricing.planFull.feature7": "Support 24/7",
+    "pricing.planFull.feature8": "Hébergement + Domaine inclus",
+    "pricing.planFull.feature9": "Statistiques avancées",
+
+    // Badges
+    "pricing.mostSold": "LE PLUS POPULAIRE",
+    "pricing.recommended": "RECOMMANDÉ",
+    "pricing.mostComplete": "MEILLEUR RAPPORT QUALITÉ-PRIX · ÉCONOMIES INCLUSES",
+
+    // Menú productos demo
     "menu.ribeye": "Ribeye Steak",
     "menu.trufflePasta": "Pâtes à la Truffe",
     "menu.margherita": "Pizza Margherita",
     "menu.salmon": "Saumon Grillée",
     "menu.chocolateCake": "Gâteau au Chocolat",
     "menu.mojito": "Mojito",
+
+    // Categorías
     "categories.main": "Principal",
     "categories.pasta": "Pâtes",
     "categories.pizza": "Pizza",
@@ -948,35 +1246,81 @@ export const translations: Record<Language, Record<string, string>> = {
     "categories.postresEn": "Desserts",
     "categories.bebidas": "Boissons",
     "categories.bebidasEn": "Drinks",
+
+    // Servicios
     "services.title1": "SERVICES",
     "services.title2": "PREMIUM",
-    "services.subtitle": "Solutions numériques complètes",
+    "services.subtitle": "Solutions numériques complètes pour votre entreprise",
+    "services.web.title": "Développement Web",
+    "services.web.description": "Sites web personnalisés",
+    "services.web.feature1": "Design responsive",
+    "services.web.feature2": "SEO optimisé",
+    "services.web.feature3": "Chargement rapide",
+    "services.qr.title": "Menus QR Numériques",
+    "services.qr.description": "Menus numériques à accès instantané",
+    "services.qr.feature1": "Accès instantané",
+    "services.qr.feature2": "Mises à jour en temps réel",
+    "services.qr.feature3": "Sans application",
+    "services.admin.title": "Panneau Admin Facile",
+    "services.admin.description": "Contrôle total sans jargon technique",
+    "services.admin.feature1": "Facile à utiliser",
+    "services.admin.feature2": "Modifications en temps réel",
+    "services.admin.feature3": "Contrôle total",
+    "services.benefit1": "Livraison Rapide",
+    "services.benefit2": "Sécurisé et Fiable",
+    "services.benefit3": "Support Continu",
+
+    // Ventajas
+    "advantages.title": "AVANTAGES COMPÉTITIFS",
+    "advantages.subtitle": "Pourquoi nous choisir ?",
+    "stats.projects": "Projets Réalisés",
+    "stats.satisfaction": "Clients Satisfaits",
+    "stats.delivery": "Semaines de Livraison",
+    "stats.support": "Support Technique",
+
+    // Contacto
     "contact.title1": "Parlons",
     "contact.title2": "Ensemble",
+    "contact.subtitle": "Transformez votre entreprise aujourd'hui",
+    "contact.whatsapp": "WhatsApp",
+    "contact.whatsappDesc": "Réponse rapide",
+    "contact.email": "Email",
+    "contact.emailDesc": "Demandes détaillées",
+
+    // Footer
     "footer.rights": "Tous droits réservés",
     "footer.tagline": "Pour les entreprises qui veulent se digitaliser",
   },
   it: {
+    // Navegación
     "nav.projects": "Progetti",
     "nav.demos": "Demo",
     "nav.services": "Servizi",
     "nav.pricing": "Prezzi",
     "nav.contact": "Contatti",
     "nav.getQuote": "Richiedi preventivo",
+
+    // Hero
     "hero.badge": "SOLUZIONE DIGITALE",
     "hero.title1": "DIGITALIZZA",
     "hero.title2": "IL TUO BUSINESS",
     "hero.subtitle": "Trasforma il ristorante con menu QR",
     "hero.button": "Scannerizza QR",
     "hero.imageCaption": "Creazione di siti web e menu QR digitali",
+
+    // Letreros animados
     "hero.phrase1": "Creazione di siti web professionali",
     "hero.phrase2": "Menu QR digitali",
     "hero.phrase3": "Il tuo business in uno scanner",
     "hero.phrase4": "Gestione facile e veloce",
+
+    // Functions
     "functions.badge": "STRUMENTI INTELLIGENTI",
     "functions.title1": "Funzioni che",
     "functions.title2": "facilitano il lavoro",
     "functions.subtitle": "Gestisci da un unico posto",
+
+    // Demos
     "demo.productos": "Gestione Prodotti",
     "demo.categorias": "Gestione Categorie",
     "demo.config": "Impostazioni",
@@ -984,12 +1328,16 @@ export const translations: Record<Language, Record<string, string>> = {
     "demo.categoriasHint": "Attiva o disattiva categorie",
     "demo.order": "Ordine",
     "demo.suggested": "Suggerito dallo chef",
+
+    // Admin
     "admin.available": "Disponibile",
     "admin.soldOut": "Esaurito",
     "admin.suggested": "Suggerito",
     "admin.highlight": "Evidenzia",
     "admin.active": "Attiva",
     "admin.inactive": "Inattiva",
+
+    // Config
     "config.infoLine": "LINEA INFORMATIVA",
     "config.systemUpdated": "Sistema aggiornato",
     "config.lastSync": "Ultima sincronizzazione",
@@ -1002,9 +1350,13 @@ export const translations: Record<Language, Record<string, string>> = {
     "config.satSun": "Sabato a Domenica",
     "config.nextHoliday": "Prossima festività",
     "config.closed": "Chiuso",
+
+    // Línea informativa
     "info.line1": "📢 LINEA INFORMATIVA - Nuovo piatto! Prova il Ribeye Steak",
     "info.line2": "🎉 OFFERTA SPECIALE: 2x1 sui dolci ogni venerdì",
     "info.line3": "⭐ EVENTO: Degustazione vini questo sabato alle 20:00",
+
+    // Pricing - Generales
     "pricing.badge": "PREZZI IN EURO",
     "pricing.title1": "Scegli il",
     "pricing.title2": "Piano Ideale",
@@ -1013,16 +1365,130 @@ export const translations: Record<Language, Record<string, string>> = {
     "pricing.monthly": "Abbonamento Mensile",
     "pricing.save": "RISPARMIA",
     "pricing.hostingFree": "1 anno hosting gratuito",
+    "pricing.hostingFreeYear": "Hosting 1 anno gratis",
+    "pricing.hire": "Acquista",
     "pricing.hireWhatsapp": "Acquista su WhatsApp",
     "pricing.subscribeWhatsapp": "Abbonati su WhatsApp",
     "pricing.allPlansInclude": "Tutti i piani includono: Hosting sicuro • Aggiornamenti gratuiti • Supporto tecnico",
+    "pricing.allPlansIncludeNote": "🔥 Tutti i piani includono: Hosting sicuro • Aggiornamenti gratuiti • Supporto tecnico",
     "pricing.qrNote": "I QR fisici sono in metallo con incisione laser • Costi di spedizione non inclusi",
+    "pricing.pro": "PRO",
+    
+    // Títulos de secciones de pricing
+    "pricing.qrSubtitle": "Soluzioni QR per la tua attività",
+    "pricing.monthlySubtitle": "Nessun impegno, cancella quando vuoi",
+    "pricing.webDevelopment": "Sviluppo Web",
+    "pricing.webSubtitle": "Siti web professionali per la tua attività",
+
+    // Planes Web Premium
+    "pricing.webPremium": "Web Premium",
+    "pricing.webPremiumDesc": "E-commerce · negozio online · gateway di pagamento",
+    "pricing.webPremium.feature1": "Design responsive premium",
+    "pricing.webPremium.feature2": "Negozio online integrato",
+    "pricing.webPremium.feature3": "Gateway di pagamento",
+    "pricing.webPremium.feature4": "Carrello della spesa",
+    "pricing.webPremium.feature5": "SEO avanzato + Analytics",
+    "pricing.webPremium.feature6": "Dominio + SSL incluso",
+    "pricing.webPremium.feature7": "Supporto 24/7",
+
+    // Planes Pago Único QR
+    "pricing.qrBasic": "QR Base",
+    "pricing.qrBasicDesc": "10 adesivi · supporto WhatsApp",
+    "pricing.qrBasic.feature1": "QR funzionale per menu digitale",
+    "pricing.qrBasic.feature2": "Menu digitale interattivo",
+    "pricing.qrBasic.feature3": "10 adesivi QR",
+    "pricing.qrBasic.feature4": "Supporto WhatsApp",
+
+    "pricing.qrStandard": "QR Standard",
+    "pricing.qrStandardDesc": "20 adesivi · supporto WhatsApp",
+    "pricing.qrStandard.feature1": "QR funzionale per menu digitale",
+    "pricing.qrStandard.feature2": "Menu digitale interattivo",
+    "pricing.qrStandard.feature3": "20 adesivi QR",
+    "pricing.qrStandard.feature4": "Supporto WhatsApp",
+
+    "pricing.qrPro": "QR Pro",
+    "pricing.qrProDesc": "30 adesivi · pannello premium · design personalizzato",
+    "pricing.qrPro.feature1": "QR funzionale per menu digitale",
+    "pricing.qrPro.feature2": "Menu digitale interattivo",
+    "pricing.qrPro.feature3": "30 adesivi QR",
+    "pricing.qrPro.feature4": "Pannello di amministrazione premium",
+    "pricing.qrPro.feature5": "Design QR personalizzato",
+
+    "pricing.webSimple": "Sito Semplice",
+    "pricing.webSimpleDesc": "Fino a 5 pagine · professionale e responsive",
+    "pricing.webSimple.feature1": "Design responsive",
+    "pricing.webSimple.feature2": "Fino a 5 pagine",
+    "pricing.webSimple.feature3": "Modulo di contatto",
+    "pricing.webSimple.feature4": "SEO base",
+    "pricing.webSimple.feature5": "Integrazione social media",
+
+    "pricing.webAdvanced": "Sito Avanzato",
+    "pricing.webAdvancedDesc": "Pagine illimitate · blog · analytics",
+    "pricing.webAdvanced.feature1": "Design responsive premium",
+    "pricing.webAdvanced.feature2": "Pagine illimitate",
+    "pricing.webAdvanced.feature3": "Blog integrato",
+    "pricing.webAdvanced.feature4": "SEO avanzato",
+    "pricing.webAdvanced.feature5": "Pannello di analisi",
+    "pricing.webAdvanced.feature6": "Dominio personalizzato",
+
+    "pricing.pack15qr": "Pacchetto Completo · 15 QR",
+    "pricing.pack15qrDesc": "Sito + QR + Menu + 15 QR fisici",
+    "pricing.pack15qr.feature1": "Sito completo responsive",
+    "pricing.pack15qr.feature2": "QR funzionale per menu",
+    "pricing.pack15qr.feature3": "Menu digitale interattivo",
+    "pricing.pack15qr.feature4": "15 QR (metallo o adesivi)",
+    "pricing.pack15qr.feature5": "Pannello admin unificato",
+    "pricing.pack15qr.feature6": "Supporto prioritario",
+    "pricing.pack15qr.feature7": "Statistiche avanzate",
+
+    // Planes Mensuales
+    "pricing.planQr": "Piano QR",
+    "pricing.planQrDesc": "QR + Menu Digitale + 10 adesivi QR",
+    "pricing.planQr.feature1": "QR funzionale per menu digitale",
+    "pricing.planQr.feature2": "Menu digitale interattivo",
+    "pricing.planQr.feature3": "10 adesivi QR",
+    "pricing.planQr.feature4": "Pannello di amministrazione",
+    "pricing.planQr.feature5": "Aggiornamenti in tempo reale",
+    "pricing.planQr.feature6": "Supporto email",
+    "pricing.planQr.feature7": "Hosting incluso",
+
+    "pricing.planQrPlus": "Piano QR+",
+    "pricing.planQrPlusDesc": "QR + Menu Digitale + 15 adesivi QR",
+    "pricing.planQrPlus.feature1": "QR funzionale per menu digitale",
+    "pricing.planQrPlus.feature2": "Menu digitale interattivo",
+    "pricing.planQrPlus.feature3": "15 adesivi QR",
+    "pricing.planQrPlus.feature4": "Pannello di amministrazione completo",
+    "pricing.planQrPlus.feature5": "Aggiornamenti in tempo reale",
+    "pricing.planQrPlus.feature6": "Supporto prioritario",
+    "pricing.planQrPlus.feature7": "Statistiche di scansione",
+    "pricing.planQrPlus.feature8": "Hosting incluso",
+
+    "pricing.planFull": "Piano Completo",
+    "pricing.planFullDesc": "Sito + QR + Menu + 20 adesivi QR",
+    "pricing.planFull.feature1": "Sito completo responsive",
+    "pricing.planFull.feature2": "QR funzionale per menu",
+    "pricing.planFull.feature3": "Menu digitale interattivo",
+    "pricing.planFull.feature4": "20 adesivi QR",
+    "pricing.planFull.feature5": "Pannello admin unificato",
+    "pricing.planFull.feature6": "Aggiornamenti illimitati",
+    "pricing.planFull.feature7": "Supporto 24/7",
+    "pricing.planFull.feature8": "Hosting + Dominio incluso",
+    "pricing.planFull.feature9": "Statistiche avanzate",
+
+    // Badges
+    "pricing.mostSold": "PIÙ POPOLARE",
+    "pricing.recommended": "RACCOMANDATO",
+    "pricing.mostComplete": "MIGLIOR VALORE · RISPARMIO INCLUSO",
+
+    // Menú productos demo
     "menu.ribeye": "Bistecca Ribeye",
     "menu.trufflePasta": "Pasta al Tartufo",
     "menu.margherita": "Pizza Margherita",
     "menu.salmon": "Salmone alla Griglia",
     "menu.chocolateCake": "Torta al Cioccolato",
     "menu.mojito": "Mojito",
+
+    // Categorías
     "categories.main": "Principali",
     "categories.pasta": "Pasta",
     "categories.pizza": "Pizza",
@@ -1036,11 +1502,48 @@ export const translations: Record<Language, Record<string, string>> = {
     "categories.postresEn": "Desserts",
     "categories.bebidas": "Bevande",
     "categories.bebidasEn": "Drinks",
+
+    // Servicios
     "services.title1": "SERVIZI",
     "services.title2": "PREMIUM",
-    "services.subtitle": "Soluzioni digitali complete",
+    "services.subtitle": "Soluzioni digitali complete per la tua attività",
+    "services.web.title": "Sviluppo Web",
+    "services.web.description": "Siti web personalizzati",
+    "services.web.feature1": "Design responsive",
+    "services.web.feature2": "SEO ottimizzato",
+    "services.web.feature3": "Caricamento veloce",
+    "services.qr.title": "Menu QR Digitali",
+    "services.qr.description": "Menu digitali ad accesso istantaneo",
+    "services.qr.feature1": "Accesso istantaneo",
+    "services.qr.feature2": "Aggiornamenti in tempo reale",
+    "services.qr.feature3": "Nessuna app necessaria",
+    "services.admin.title": "Pannello Admin Facile",
+    "services.admin.description": "Controllo totale senza tecnicismi",
+    "services.admin.feature1": "Facile da usare",
+    "services.admin.feature2": "Modifiche in tempo reale",
+    "services.admin.feature3": "Controllo totale",
+    "services.benefit1": "Consegna Rapida",
+    "services.benefit2": "Sicuro e Affidabile",
+    "services.benefit3": "Supporto Continuo",
+
+    // Ventajas
+    "advantages.title": "VANTAGGI COMPETITIVI",
+    "advantages.subtitle": "Perché scegliere noi?",
+    "stats.projects": "Progetti Completati",
+    "stats.satisfaction": "Clienti Soddisfatti",
+    "stats.delivery": "Settimane di Consegna",
+    "stats.support": "Supporto Tecnico",
+
+    // Contacto
     "contact.title1": "Parliamo",
     "contact.title2": "Connettiamoci",
+    "contact.subtitle": "Trasforma la tua attività oggi",
+    "contact.whatsapp": "WhatsApp",
+    "contact.whatsappDesc": "Risposta rapida",
+    "contact.email": "Email",
+    "contact.emailDesc": "Richieste dettagliate",
+
+    // Footer
     "footer.rights": "Tutti i diritti riservati",
     "footer.tagline": "Per le aziende che vogliono digitalizzarsi",
   },

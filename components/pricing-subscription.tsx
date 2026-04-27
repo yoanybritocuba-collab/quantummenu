@@ -32,7 +32,7 @@ export function PricingSubscription() {
         t("pricing.qrBasic.feature2"),
         t("pricing.qrBasic.feature3"),
         t("pricing.qrBasic.feature4"),
-        "Hosting 1 año gratis",
+        t("pricing.hostingFreeYear"),
       ],
       icon: <QrCode className="w-6 h-6" />,
       color: "from-red-500 to-red-600",
@@ -47,7 +47,7 @@ export function PricingSubscription() {
         t("pricing.qrStandard.feature2"),
         t("pricing.qrStandard.feature3"),
         t("pricing.qrStandard.feature4"),
-        "Hosting 1 año gratis",
+        t("pricing.hostingFreeYear"),
       ],
       icon: <Zap className="w-6 h-6" />,
       color: "from-purple-500 to-purple-600",
@@ -63,7 +63,7 @@ export function PricingSubscription() {
         t("pricing.qrPro.feature3"),
         t("pricing.qrPro.feature4"),
         t("pricing.qrPro.feature5"),
-        "Hosting 1 año gratis",
+        t("pricing.hostingFreeYear"),
       ],
       icon: <Diamond className="w-6 h-6" />,
       color: "from-pink-500 to-pink-600",
@@ -125,7 +125,7 @@ export function PricingSubscription() {
       ],
       icon: <Diamond className="w-6 h-6" />,
       color: "from-pink-500 to-pink-600",
-      badge: "TODO INCLUIDO",
+      badge: t("pricing.mostComplete"),
     },
   ]
 
@@ -141,7 +141,7 @@ export function PricingSubscription() {
         t("pricing.webSimple.feature3"),
         t("pricing.webSimple.feature4"),
         t("pricing.webSimple.feature5"),
-        "Hosting 1 año gratis",
+        t("pricing.hostingFreeYear"),
       ],
       icon: <Layout className="w-6 h-6" />,
       color: "from-cyan-500 to-cyan-600",
@@ -158,30 +158,29 @@ export function PricingSubscription() {
         t("pricing.webAdvanced.feature4"),
         t("pricing.webAdvanced.feature5"),
         t("pricing.webAdvanced.feature6"),
-        "Hosting 1 año gratis",
+        t("pricing.hostingFreeYear"),
       ],
       icon: <Rocket className="w-6 h-6" />,
       color: "from-indigo-500 to-indigo-600",
       badge: t("pricing.recommended"),
     },
     {
-      name: "Web Premium",
+      name: t("pricing.webPremium"),
       price: 550,
-      description: "E-commerce · tienda online · pasarela de pagos",
+      description: t("pricing.webPremiumDesc"),
       features: [
-        "Diseño responsive premium",
-        "Páginas ilimitadas",
-        "Tienda online integrada",
-        "Pasarela de pagos",
-        "Carrito de compras",
-        "SEO avanzado + Analytics",
-        "Dominio + SSL incluido",
-        "Soporte 24/7",
-        "Hosting 1 año gratis",
+        t("pricing.webPremium.feature1"),
+        t("pricing.webPremium.feature2"),
+        t("pricing.webPremium.feature3"),
+        t("pricing.webPremium.feature4"),
+        t("pricing.webPremium.feature5"),
+        t("pricing.webPremium.feature6"),
+        t("pricing.webPremium.feature7"),
+        t("pricing.hostingFreeYear"),
       ],
       icon: <Globe className="w-6 h-6" />,
       color: "from-purple-500 to-pink-500",
-      badge: "PRO",
+      badge: t("pricing.pro"),
     },
   ]
 
@@ -242,9 +241,9 @@ export function PricingSubscription() {
               <div className="mb-3">
                 <span className="text-2xl sm:text-3xl font-bold text-white">{plan.price}€</span>
                 <span className="text-zinc-500 text-xs ml-1">
-                  {title.includes("Mensual") ? "/mes" : " único"}
+                  {title.includes(t("pricing.monthly")) ? "/mes" : " único"}
                 </span>
-                <p className="text-green-500 text-[10px] mt-0.5">+ Hosting 1 año gratis</p>
+                <p className="text-green-500 text-[10px] mt-0.5">{t("pricing.hostingFreeYear")}</p>
               </div>
               <div className="space-y-1.5 mb-4">
                 {plan.features.map((feature: string, idx: number) => (
@@ -255,7 +254,7 @@ export function PricingSubscription() {
                 ))}
               </div>
               <button
-                onClick={() => sendToWhatsApp(plan.name, plan.price, title.includes("Mensual") ? "Suscripción Mensual" : "Pago Único")}
+                onClick={() => sendToWhatsApp(plan.name, plan.price, title.includes(t("pricing.monthly")) ? t("pricing.monthly") : t("pricing.oneTime"))}
                 className={`w-full py-1.5 sm:py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 flex items-center justify-center gap-1.5 ${
                   plan.badge && (plan.badge === t("pricing.mostSold") || plan.badge === t("pricing.recommended"))
                     ? "bg-gradient-to-r from-red-600 to-purple-600 text-white shadow-lg hover:shadow-red-500/25 hover:scale-105"
@@ -263,7 +262,7 @@ export function PricingSubscription() {
                 }`}
               >
                 <MessageCircle className="w-3 h-3" />
-                Contratar
+                {t("pricing.hire")}
               </button>
             </div>
           </motion.div>
@@ -289,37 +288,52 @@ export function PricingSubscription() {
         >
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-500/10 border border-red-500/30 backdrop-blur-sm mb-4">
             <CreditCard className="w-3 h-3 sm:w-4 sm:h-4 text-red-400" />
-            <span className="text-[10px] sm:text-xs text-red-400 font-mono tracking-wider">PRECIOS EN EUROS</span>
+            <span className="text-[10px] sm:text-xs text-red-400 font-mono tracking-wider">{t("pricing.badge")}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-            <span className="text-white">Elige tu</span>
+            <span className="text-white">{t("pricing.title1")}</span>
             <br />
             <span className="bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Plan Ideal
+              {t("pricing.title2")}
             </span>
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto mt-3">
-            Sin sorpresas ni costos ocultos. Elige el plan que mejor se adapte a tu negocio.
+            {t("pricing.subtitle")}
           </p>
         </motion.div>
 
         {/* SECCIÓN 1: PAGO ÚNICO - QR */}
-        <SectionCard title="💳 Pago Único - QR" subtitle="Soluciones QR para tu negocio" plans={oneTimePlans} />
+        <SectionCard 
+          title={`💳 ${t("pricing.oneTime")} - QR`} 
+          subtitle={t("pricing.qrSubtitle")} 
+          plans={oneTimePlans} 
+        />
 
         {/* SECCIÓN 2: SUSCRIPCIÓN MENSUAL */}
-        <SectionCard title="🔄 Suscripción Mensual" subtitle="Sin permanencia, cancela cuando quieras" plans={monthlyPlans} />
+        <SectionCard 
+          title={`🔄 ${t("pricing.monthly")}`} 
+          subtitle={t("pricing.monthlySubtitle")} 
+          plans={monthlyPlans} 
+        />
 
         {/* SECCIÓN 3: DESARROLLO WEB */}
-        <SectionCard title="🌐 Desarrollo Web" subtitle="Sitios profesionales para tu negocio" plans={webPlans} />
+        <SectionCard 
+          title={`🌐 ${t("pricing.webDevelopment")}`} 
+          subtitle={t("pricing.webSubtitle")} 
+          plans={webPlans} 
+        />
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center mt-8 sm:mt-10"
+          transition={{ delay: 0.5 }}
+          className="mt-10 sm:mt-12 text-center"
         >
-          <p className="text-zinc-500 text-[10px] sm:text-xs">
-            🔥 Todos los planes incluyen: Hosting seguro • Actualizaciones gratuitas • Soporte técnico
+          <p className="text-zinc-500 text-xs sm:text-sm">
+            {t("pricing.allPlansIncludeNote")}
+          </p>
+          <p className="text-zinc-600 text-[10px] sm:text-xs mt-2">
+            {t("pricing.qrNote")}
           </p>
         </motion.div>
       </div>

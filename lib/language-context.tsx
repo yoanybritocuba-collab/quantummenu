@@ -12,20 +12,25 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Siempre empezar con "es" en el servidor y en el primer render del cliente
   const [language, setLanguage] = useState<Language>("es")
   const [mounted, setMounted] = useState(false)
 
-  // Solo cargar el idioma guardado después de que el componente esté montado
+  // Cargar idioma guardado SOLO en el cliente
   useEffect(() => {
-    setMounted(true)
     const saved = localStorage.getItem("language") as Language
     if (saved && translations[saved]) {
       setLanguage(saved)
+    } else {
+      // Detectar idioma del navegador
+      const browserLang = navigator.language.split('-')[0] as Language
+      if (translations[browserLang]) {
+        setLanguage(browserLang)
+      }
     }
+    setMounted(true)
   }, [])
 
-  // Guardar en localStorage cuando cambie el idioma (solo en cliente)
+  // Guardar en localStorage cuando cambie
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("language", language)
@@ -33,23 +38,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [language, mounted])
 
   const t = useCallback((key: string): string => {
-    const languageTranslations = translations[language]
-    if (!languageTranslations) {
-      const spanishTranslations = translations["es"]
-      return spanishTranslations?.[key] || key
+    const langTranslations = translations[language]
+    if (!langTranslations) {
+      return translations["es"]?.[key] || key
     }
-    return languageTranslations[key] || key
+    const translated = langTranslations[key]
+    if (!translated) {
+      // Si no existe la traducción, mostrar la clave y advertencia
+      console.warn(`🔤 Missing translation: "${key}" for language: ${language}`)
+      return translations["es"]?.[key] || key
+    }
+    return translated
   }, [language])
 
-  // Durante la hidratación, renderizar el contenido original
-  if (!mounted) {
-    return (
-      <LanguageContext.Provider value={{ language: "es", setLanguage, t }}>
-        {children}
-      </LanguageContext.Provider>
-    )
-  }
-
+  // Mostrar children inmediatamente para evitar problemas de hidratación
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}

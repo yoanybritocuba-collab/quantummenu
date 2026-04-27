@@ -16,7 +16,7 @@ const nextConfig = {
     buildActivity: false,
   },
 
-  // AÑADIMOS LAS CABECERAS DE SEGURIDAD AQUÍ
+  // Cabeceras de seguridad y CONTROL DE CACHÉ
   async headers() {
     return [
       {
@@ -42,6 +42,21 @@ const nextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
+          },
+          // 🔥 NUEVA CABECERA PARA EVITAR CACHÉ DE TRADUCCIONES 🔥
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate, max-age=0',
+          },
+        ],
+      },
+      // Cabeceras específicas para archivos JS/CSS (permite caché pero con validación)
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
