@@ -29,16 +29,30 @@ const getGreeting = (language: string): string => {
   return lang.night;
 };
 
-const getWelcomeMessage = (language: string): string => {
+// Mensaje de bienvenida según idioma
+const getWelcomeMessage = (language: string, greeting: string): string => {
   const messages: Record<string, string> = {
-    es: "👋 ¿Necesitas ayuda? Pregúntame sobre precios, QR o webs.",
-    en: "👋 Need help? Ask me about prices, QR or websites.",
-    ru: "👋 Нужна помощь? Спросите о ценах, QR или сайтах.",
-    zh: "👋 需要帮助吗？问我关于价格、二维码或网站的问题。",
-    fr: "👋 Besoin d'aide? Demandez-moi les prix, QR ou sites web.",
-    it: "👋 Hai bisogno di aiuto? Chiedimi prezzi, QR o siti web."
+    es: `¡${greeting}! 👋 Soy QuantumBot, tu asistente virtual. ¿En qué puedo ayudarte? Pregúntame lo que deseas saber sobre precios, planes QR o desarrollo web.`,
+    en: `${greeting}! 👋 I'm QuantumBot, your virtual assistant. How can I help you? Ask me anything about prices, QR plans or web development.`,
+    ru: `${greeting}! 👋 Я QuantumBot, ваш виртуальный помощник. Чем могу помочь? Спрашивайте что угодно о ценах, QR-планах или веб-разработке.`,
+    zh: `${greeting}! 👋 我是QuantumBot，您的虚拟助手。我能帮您什么？问我关于价格、二维码计划或网站开发的任何事情。`,
+    fr: `${greeting}! 👋 Je suis QuantumBot, votre assistant virtuel. Comment puis-je vous aider ? Demandez-moi tout ce que vous voulez savoir sur les prix, les plans QR ou le développement web.`,
+    it: `${greeting}! 👋 Sono QuantumBot, il tuo assistente virtuale. Come posso aiutarti? Chiedimi quello che vuoi sapere su prezzi, piani QR o sviluppo web.`
   };
   return messages[language] || messages.es;
+};
+
+// Diálogo flotante pequeño
+const getSmallDialogText = (language: string): string => {
+  const texts: Record<string, string> = {
+    es: "💬 ¿Necesitas ayuda?",
+    en: "💬 Need help?",
+    ru: "💬 Нужна помощь?",
+    zh: "💬 需要帮助吗？",
+    fr: "💬 Besoin d'aide ?",
+    it: "💬 Hai bisogno di aiuto?"
+  };
+  return texts[language] || texts.es;
 };
 
 export default function Chatbot() {
@@ -47,30 +61,25 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hasGreeted, setHasGreeted] = useState(false);
   const [showSmallDialog, setShowSmallDialog] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
 
-  // Saludo inicial
+  // Resetear mensajes cuando cambia el idioma
   useEffect(() => {
-    if (!hasGreeted) {
-      setHasGreeted(true);
-      const greeting = getGreeting(language);
-      const welcome = getWelcomeMessage(language);
-      setMessages([{ role: "assistant", content: `${greeting}! ${welcome}` }]);
-      
-      setTimeout(() => {
-        setShowSmallDialog(false);
-      }, 5000);
-    }
-  }, [language, hasGreeted]);
+    const greeting = getGreeting(language);
+    const welcome = getWelcomeMessage(language, greeting);
+    setMessages([{ role: "assistant", content: welcome }]);
+    setShowSmallDialog(true);
+  }, [language]);
 
+  // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Auto-focus al abrir
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
@@ -110,7 +119,15 @@ export default function Chatbot() {
       const data = await response.json();
       setMessages(prev => [...prev, { role: "assistant", content: data.reply }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: "assistant", content: "❌ Error. WhatsApp +34 624 497 851" }]);
+      const errorMsg: Record<string, string> = {
+        es: "❌ Error. Contacta por WhatsApp +34 624 497 851",
+        en: "❌ Error. Contact us on WhatsApp +34 624 497 851",
+        ru: "❌ Ошибка. Свяжитесь с нами в WhatsApp +34 624 497 851",
+        zh: "❌ 错误。通过WhatsApp联系我们 +34 624 497 851",
+        fr: "❌ Erreur. Contactez-nous sur WhatsApp +34 624 497 851",
+        it: "❌ Errore. Contattaci su WhatsApp +34 624 497 851"
+      };
+      setMessages(prev => [...prev, { role: "assistant", content: errorMsg[language] || errorMsg.es }]);
     } finally {
       setIsLoading(false);
     }
@@ -155,11 +172,11 @@ export default function Chatbot() {
           }}
           className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-1.5 px-2.5 rounded-full shadow-lg"
         >
-          <p className="text-[10px] whitespace-nowrap">💬 ¿Necesitas ayuda?</p>
+          <p className="text-[10px] whitespace-nowrap">{getSmallDialogText(language)}</p>
         </div>
       )}
 
-      {/* Botón flotante - más pequeño */}
+      {/* Botón flotante */}
       {!isOpen && (
         <button
           onClick={handleOpen}
@@ -178,7 +195,7 @@ export default function Chatbot() {
         </button>
       )}
 
-      {/* Ventana del chat - ULTRA COMPACTA */}
+      {/* Ventana del chat */}
       {isOpen && (
         <div 
           ref={chatRef}
@@ -188,14 +205,14 @@ export default function Chatbot() {
             right: '12px', 
             zIndex: 99999,
             width: isMobile ? '280px' : '300px',
-            height: isMobile ? '400px' : '450px',
+            height: isMobile ? '420px' : '460px',
             maxWidth: 'calc(100vw - 24px)',
             borderRadius: '12px',
             boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)'
           }}
           className="bg-gradient-to-br from-zinc-900 to-black flex flex-col overflow-hidden border border-red-500/20"
         >
-          {/* Header compacto */}
+          {/* Header */}
           <div className="bg-gradient-to-r from-red-500 to-purple-600 py-2 px-3 flex justify-between items-center">
             <div className="flex items-center gap-1.5">
               <span className="text-sm">🤖</span>
@@ -213,7 +230,7 @@ export default function Chatbot() {
             </button>
           </div>
 
-          {/* Messages - compactos */}
+          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-2 space-y-1.5" style={{ height: 'calc(100% - 85px)' }}>
             {messages.map((msg, idx) => (
               <div
@@ -246,7 +263,7 @@ export default function Chatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input ultra compacto */}
+          {/* Input */}
           <div className="p-2 border-t border-zinc-800 bg-black/30">
             <div className="flex gap-1.5">
               <input
@@ -255,7 +272,7 @@ export default function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={isMobile ? "Pregunta algo..." : "Escribe aquí..."}
+                placeholder={isMobile ? "Escribe aquí..." : "Escribe tu pregunta..."}
                 className="flex-1 bg-zinc-800 text-white rounded-lg px-2 py-1.5 text-[11px] focus:outline-none focus:ring-1 focus:ring-red-500/50"
                 disabled={isLoading}
               />
