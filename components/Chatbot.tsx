@@ -31,12 +31,12 @@ const getGreeting = (language: string): string => {
 
 const getWelcomeMessage = (language: string): string => {
   const messages: Record<string, string> = {
-    es: "👋 Soy QuantumBot, tu asistente virtual. Si necesitas información sobre precios, planes QR o desarrollo web, puedes consultarme con toda confianza. ¿En qué puedo ayudarte?",
-    en: "👋 I'm QuantumBot, your virtual assistant. If you need information about prices, QR plans or web development, you can ask me. How can I help you?",
-    ru: "👋 Я QuantumBot, ваш виртуальный помощник. Если вам нужна информация о ценах, QR-планах или веб-разработке, вы можете спросить меня. Чем могу помочь?",
-    zh: "👋 我是QuantumBot，您的虚拟助手。如果您需要价格、二维码计划或网站开发的信息，可以问我。我能帮您什么？",
-    fr: "👋 Je suis QuantumBot, votre assistant virtuel. Si vous avez besoin d'informations sur les prix, les plans QR ou le développement web, vous pouvez me demander. Comment puis-je vous aider ?",
-    it: "👋 Sono QuantumBot, il tuo assistente virtuale. Se hai bisogno di informazioni su prezzi, piani QR o sviluppo web, puoi chiedere a me. Come posso aiutarti?"
+    es: "👋 ¿Necesitas información sobre precios, planes QR o desarrollo web? Puedes consultarme.",
+    en: "👋 Need information about prices, QR plans or web development? You can ask me.",
+    ru: "👋 Нужна информация? Вы можете спросить меня.",
+    zh: "👋 需要信息吗？您可以问我。",
+    fr: "👋 Besoin d'informations ? Vous pouvez me demander.",
+    it: "👋 Hai bisogno di informazioni? Puoi chiedere a me."
   };
   return messages[language] || messages.es;
 };
@@ -48,37 +48,41 @@ export default function Chatbot() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
+  const [showSmallDialog, setShowSmallDialog] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
 
-  // Saludo inicial al cargar la página
+  // Saludo inicial
   useEffect(() => {
     if (!hasGreeted) {
       setHasGreeted(true);
       const greeting = getGreeting(language);
       const welcome = getWelcomeMessage(language);
       setMessages([{ role: "assistant", content: `${greeting}! ${welcome}` }]);
+      
+      setTimeout(() => {
+        setShowSmallDialog(false);
+      }, 5000);
     }
   }, [language, hasGreeted]);
 
-  // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Auto-focus al abrir
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
 
-  // Cerrar si hace clic fuera del chat
+  // Cerrar al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isOpen && chatRef.current && !chatRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        setShowSmallDialog(true);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -121,59 +125,93 @@ export default function Chatbot() {
 
   const handleOpen = () => {
     setIsOpen(true);
+    setShowSmallDialog(false);
   };
 
   return (
     <>
-      {/* Botón flotante - solo icono */}
+      {/* Diálogo pequeño flotante */}
+      {!isOpen && showSmallDialog && messages.length > 0 && (
+        <div 
+          onClick={handleOpen}
+          style={{ 
+            position: 'fixed', 
+            bottom: '75px', 
+            right: '20px', 
+            zIndex: 99998,
+            maxWidth: '250px',
+            cursor: 'pointer'
+          }}
+          className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-2.5 rounded-xl shadow-xl"
+        >
+          <p className="text-xs">{messages[0]?.content.substring(0, 70)}...</p>
+        </div>
+      )}
+
+      {/* Botón flotante */}
       {!isOpen && (
         <button
           onClick={handleOpen}
-          style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 99999 }}
-          className="group cursor-pointer"
+          style={{ 
+            position: 'fixed', 
+            bottom: '20px', 
+            right: '20px', 
+            zIndex: 99999,
+            width: '52px',
+            height: '52px',
+            borderRadius: '26px'
+          }}
+          className="bg-gradient-to-r from-red-500 to-purple-600 text-white shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center"
         >
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-600 rounded-full blur-lg animate-pulse"></div>
-            <div className="relative bg-gradient-to-r from-red-500 to-purple-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110">
-              <span className="text-2xl">🤖</span>
-            </div>
-          </div>
+          <span className="text-2xl">🤖</span>
         </button>
       )}
 
-      {/* Ventana del chat - profesional sin botones de sugerencias */}
+      {/* Ventana del chat - TAMAÑO PEQUEÑO FIJO */}
       {isOpen && (
         <div 
           ref={chatRef}
-          style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 99999, width: '400px', height: '580px' }}
-          className="bg-gradient-to-br from-zinc-900 to-black rounded-2xl shadow-2xl flex flex-col border border-red-500/30 overflow-hidden"
+          style={{ 
+            position: 'fixed', 
+            bottom: '20px', 
+            right: '20px', 
+            zIndex: 99999,
+            width: '350px',
+            height: '480px',
+            borderRadius: '16px',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+          }}
+          className="bg-gradient-to-br from-zinc-900 to-black flex flex-col overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-red-500 to-purple-600 p-4 flex justify-between items-center">
+          <div className="bg-gradient-to-r from-red-500 to-purple-600 p-3 flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <span className="text-xl">🤖</span>
+              <span className="text-lg">🤖</span>
               <div>
-                <h3 className="font-bold text-white">QuantumBot</h3>
-                <p className="text-xs text-white/70">Online • Respuesta inmediata</p>
+                <h3 className="font-bold text-white text-sm">QuantumBot</h3>
+                <p className="text-xs text-white/70">Online</p>
               </div>
             </div>
             <button 
-              onClick={() => setIsOpen(false)} 
-              className="text-white hover:bg-white/20 rounded-lg w-8 h-8 flex items-center justify-center transition"
+              onClick={() => {
+                setIsOpen(false);
+                setShowSmallDialog(true);
+              }} 
+              className="text-white hover:bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center text-lg"
             >
               ✕
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          <div className="flex-1 overflow-y-auto p-3 space-y-2" style={{ height: 'calc(100% - 105px)' }}>
             {messages.map((msg, idx) => (
               <div
                 key={idx}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-2 duration-200`}
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] p-3 rounded-2xl text-sm ${
+                  className={`max-w-[85%] p-2 rounded-xl text-xs ${
                     msg.role === "user"
                       ? "bg-gradient-to-r from-red-500 to-purple-600 text-white rounded-br-none"
                       : "bg-zinc-800 text-zinc-100 rounded-bl-none border border-zinc-700"
@@ -186,11 +224,11 @@ export default function Chatbot() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-zinc-800 p-3 rounded-2xl rounded-bl-none">
+                <div className="bg-zinc-800 p-2 rounded-xl">
                   <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                   </div>
                 </div>
               </div>
@@ -198,8 +236,8 @@ export default function Chatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input - sin botones de sugerencias */}
-          <div className="p-4 border-t border-zinc-800 bg-black/30">
+          {/* Input */}
+          <div className="p-3 border-t border-zinc-800 bg-black/30">
             <div className="flex gap-2">
               <input
                 ref={inputRef}
@@ -207,16 +245,16 @@ export default function Chatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={language === "es" ? "Escribe tu mensaje..." : "Type your message..."}
-                className="flex-1 bg-zinc-800 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/50 placeholder:text-zinc-500"
+                placeholder="Escribe..."
+                className="flex-1 bg-zinc-800 text-white rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-red-500/50"
                 disabled={isLoading}
               />
               <button
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
-                className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-2.5 rounded-xl disabled:opacity-50 transition-all duration-200 hover:scale-105"
+                className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-2 rounded-xl disabled:opacity-50"
               >
-                <span className="text-lg">📤</span>
+                <span className="text-sm">📤</span>
               </button>
             </div>
           </div>
