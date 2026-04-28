@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
+// Inicializar Groq solo si hay API key (para evitar errores en build)
+const groq = process.env.GROQ_API_KEY 
+  ? new Groq({ apiKey: process.env.GROQ_API_KEY })
+  : null;
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
@@ -32,6 +33,13 @@ Responde en ESPAÑOL, mantén contexto, sé breve y útil.`;
 
 export async function POST(req: NextRequest) {
   try {
+    // Si no hay API key, responder con mensaje de error amigable
+    if (!groq) {
+      return NextResponse.json({ 
+        reply: "❌ El asistente no está disponible en este momento. Por favor, contacta por WhatsApp al +34 624 497 851 para recibir información." 
+      });
+    }
+
     const { messages, language = "es" } = await req.json();
 
     if (!messages || !Array.isArray(messages)) {
@@ -53,6 +61,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ reply });
   } catch (error) {
     console.error('Error:', error);
-    return NextResponse.json({ reply: "❌ Error. Contacta por WhatsApp +34 624 497 851" }, { status: 500 });
+    return NextResponse.json({ 
+      reply: "❌ Hubo un error. Por favor, contacta por WhatsApp al +34 624 497 851 para recibir información personalizada." 
+    }, { status: 500 });
   }
 }
