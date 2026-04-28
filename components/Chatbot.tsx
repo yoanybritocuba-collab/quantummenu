@@ -31,12 +31,12 @@ const getGreeting = (language: string): string => {
 
 const getWelcomeMessage = (language: string): string => {
   const messages: Record<string, string> = {
-    es: "👋 ¿Necesitas información sobre precios, planes QR o desarrollo web? Puedes consultarme.",
-    en: "👋 Need information about prices, QR plans or web development? You can ask me.",
-    ru: "👋 Нужна информация? Вы можете спросить меня.",
-    zh: "👋 需要信息吗？您可以问我。",
-    fr: "👋 Besoin d'informations ? Vous pouvez me demander.",
-    it: "👋 Hai bisogno di informazioni? Puoi chiedere a me."
+    es: "👋 ¿Necesitas ayuda? Pregúntame sobre precios, QR o webs.",
+    en: "👋 Need help? Ask me about prices, QR or websites.",
+    ru: "👋 Нужна помощь? Спросите о ценах, QR или сайтах.",
+    zh: "👋 需要帮助吗？问我关于价格、二维码或网站的问题。",
+    fr: "👋 Besoin d'aide? Demandez-moi les prix, QR ou sites web.",
+    it: "👋 Hai bisogno di aiuto? Chiedimi prezzi, QR o siti web."
   };
   return messages[language] || messages.es;
 };
@@ -110,7 +110,7 @@ export default function Chatbot() {
       const data = await response.json();
       setMessages(prev => [...prev, { role: "assistant", content: data.reply }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: "assistant", content: "❌ Error. Contacta por WhatsApp +34 624 497 851" }]);
+      setMessages(prev => [...prev, { role: "assistant", content: "❌ Error. WhatsApp +34 624 497 851" }]);
     } finally {
       setIsLoading(false);
     }
@@ -128,6 +128,18 @@ export default function Chatbot() {
     setShowSmallDialog(false);
   };
 
+  // Detectar móvil
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
       {/* Diálogo pequeño flotante */}
@@ -136,99 +148,97 @@ export default function Chatbot() {
           onClick={handleOpen}
           style={{ 
             position: 'fixed', 
-            bottom: '75px', 
-            right: '20px', 
+            bottom: '68px', 
+            right: '12px', 
             zIndex: 99998,
-            maxWidth: '250px',
             cursor: 'pointer'
           }}
-          className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-2.5 rounded-xl shadow-xl"
+          className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-1.5 px-2.5 rounded-full shadow-lg"
         >
-          <p className="text-xs">{messages[0]?.content.substring(0, 70)}...</p>
+          <p className="text-[10px] whitespace-nowrap">💬 ¿Necesitas ayuda?</p>
         </div>
       )}
 
-      {/* Botón flotante */}
+      {/* Botón flotante - más pequeño */}
       {!isOpen && (
         <button
           onClick={handleOpen}
           style={{ 
             position: 'fixed', 
-            bottom: '20px', 
-            right: '20px', 
+            bottom: '12px', 
+            right: '12px', 
             zIndex: 99999,
-            width: '52px',
-            height: '52px',
-            borderRadius: '26px'
+            width: '44px',
+            height: '44px',
+            borderRadius: '22px'
           }}
-          className="bg-gradient-to-r from-red-500 to-purple-600 text-white shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center"
+          className="bg-gradient-to-r from-red-500 to-purple-600 text-white shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"
         >
-          <span className="text-2xl">🤖</span>
+          <span className="text-xl">🤖</span>
         </button>
       )}
 
-      {/* Ventana del chat - TAMAÑO PEQUEÑO FIJO */}
+      {/* Ventana del chat - ULTRA COMPACTA */}
       {isOpen && (
         <div 
           ref={chatRef}
           style={{ 
             position: 'fixed', 
-            bottom: '20px', 
-            right: '20px', 
+            bottom: '12px', 
+            right: '12px', 
             zIndex: 99999,
-            width: '350px',
-            height: '480px',
-            borderRadius: '16px',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+            width: isMobile ? '280px' : '300px',
+            height: isMobile ? '400px' : '450px',
+            maxWidth: 'calc(100vw - 24px)',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)'
           }}
-          className="bg-gradient-to-br from-zinc-900 to-black flex flex-col overflow-hidden"
+          className="bg-gradient-to-br from-zinc-900 to-black flex flex-col overflow-hidden border border-red-500/20"
         >
-          {/* Header */}
-          <div className="bg-gradient-to-r from-red-500 to-purple-600 p-3 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">🤖</span>
-              <div>
-                <h3 className="font-bold text-white text-sm">QuantumBot</h3>
-                <p className="text-xs text-white/70">Online</p>
-              </div>
+          {/* Header compacto */}
+          <div className="bg-gradient-to-r from-red-500 to-purple-600 py-2 px-3 flex justify-between items-center">
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm">🤖</span>
+              <h3 className="font-bold text-white text-xs">QuantumBot</h3>
+              <span className="text-[9px] text-white/50">● Online</span>
             </div>
             <button 
               onClick={() => {
                 setIsOpen(false);
                 setShowSmallDialog(true);
               }} 
-              className="text-white hover:bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center text-lg"
+              className="text-white hover:bg-white/20 rounded w-5 h-5 flex items-center justify-center text-xs"
             >
               ✕
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 space-y-2" style={{ height: 'calc(100% - 105px)' }}>
+          {/* Messages - compactos */}
+          <div className="flex-1 overflow-y-auto p-2 space-y-1.5" style={{ height: 'calc(100% - 85px)' }}>
             {messages.map((msg, idx) => (
               <div
                 key={idx}
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] p-2 rounded-xl text-xs ${
+                  className={`max-w-[90%] p-1.5 px-2 rounded-lg text-[11px] ${
                     msg.role === "user"
                       ? "bg-gradient-to-r from-red-500 to-purple-600 text-white rounded-br-none"
                       : "bg-zinc-800 text-zinc-100 rounded-bl-none border border-zinc-700"
                   }`}
                 >
-                  {msg.role === "assistant" && <span className="mr-1">🤖</span>}
-                  <p className="whitespace-pre-wrap break-words">{msg.content}</p>
+                  {msg.role === "assistant" && <span className="mr-0.5 text-[9px]">🤖</span>}
+                  <p className="whitespace-pre-wrap break-words leading-relaxed">{msg.content}</p>
                 </div>
               </div>
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-zinc-800 p-2 rounded-xl">
-                  <div className="flex gap-1">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce"></span>
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                <div className="bg-zinc-800 p-1.5 rounded-lg">
+                  <div className="flex gap-0.5">
+                    <span className="w-1 h-1 bg-red-500 rounded-full animate-bounce"></span>
+                    <span className="w-1 h-1 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1 h-1 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                   </div>
                 </div>
               </div>
@@ -236,25 +246,25 @@ export default function Chatbot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-3 border-t border-zinc-800 bg-black/30">
-            <div className="flex gap-2">
+          {/* Input ultra compacto */}
+          <div className="p-2 border-t border-zinc-800 bg-black/30">
+            <div className="flex gap-1.5">
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Escribe..."
-                className="flex-1 bg-zinc-800 text-white rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-red-500/50"
+                placeholder={isMobile ? "Pregunta algo..." : "Escribe aquí..."}
+                className="flex-1 bg-zinc-800 text-white rounded-lg px-2 py-1.5 text-[11px] focus:outline-none focus:ring-1 focus:ring-red-500/50"
                 disabled={isLoading}
               />
               <button
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
-                className="bg-gradient-to-r from-red-500 to-purple-600 text-white p-2 rounded-xl disabled:opacity-50"
+                className="bg-gradient-to-r from-red-500 to-purple-600 text-white px-2 py-1.5 rounded-lg disabled:opacity-50"
               >
-                <span className="text-sm">📤</span>
+                <span className="text-[11px]">📤</span>
               </button>
             </div>
           </div>
