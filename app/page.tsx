@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { PricingSubscription } from "@/components/pricing-subscription"
 import { Services } from "@/components/services"
 import { Footer } from "@/components/Footer"
+import Chatbot from "@/components/Chatbot"
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PricingSubscription />
       <Services />
       <Footer />
+      <Chatbot />
     </main>
   )
 }
