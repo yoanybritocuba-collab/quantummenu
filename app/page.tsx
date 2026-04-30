@@ -30,6 +30,13 @@ export default function Home() {
     exit: { opacity: 0, y: -20 },
   }
 
+  const scrollToServices = () => {
+    setActivePage("home")
+    setTimeout(() => {
+      document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
+    }, 100)
+  }
+
   return (
     <main className="min-h-screen bg-black">
       <Navigation activePage={activePage} setActivePage={setActivePage} />
@@ -38,43 +45,45 @@ export default function Home() {
         {(activePage === "home" || activePage === "") && (
           <motion.div key="home" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
             <Hero />
-            <WhatWeDo />
+            <WhatWeDo setActivePage={setActivePage} scrollToServices={scrollToServices} />
+            <ServicesSidebar />
+            <Footer />
+            <Chatbot />
           </motion.div>
         )}
         
         {activePage === "services" && (
           <motion.div key="services" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
             <ServicesSidebar />
+            <Footer />
+            <Chatbot />
           </motion.div>
         )}
         
         {activePage === "about" && (
           <motion.div key="about" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
             <InfoSections section="about" />
-          </motion.div>
-        )}
-        
-        {activePage === "process" && (
-          <motion.div key="process" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
-            <InfoSections section="process" />
+            <Footer />
+            <Chatbot />
           </motion.div>
         )}
         
         {activePage === "guarantee" && (
           <motion.div key="guarantee" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
             <InfoSections section="guarantee" />
+            <Footer />
+            <Chatbot />
           </motion.div>
         )}
         
         {activePage === "contact" && (
           <motion.div key="contact" variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
             <ContactSection />
+            <Footer />
+            <Chatbot />
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
-      <Chatbot />
     </main>
   )
 }

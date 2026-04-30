@@ -88,27 +88,28 @@ export function ServicesSidebar() {
     },
   ]
 
-  // Suscripciones mensuales
   const monthlyPlans = [
     { name: t("payment.monthlyBasic"), price: "30€/mes", paymentType: "monthly", features: [t("features.hosting"), t("features.updates"), t("features.backups"), t("features.emailSupport")], support: "basic" },
     { name: t("payment.monthlyPro"), price: "35€/mes", paymentType: "monthly", features: [t("features.hosting"), t("features.updates"), t("features.backups"), t("features.security"), t("features.emailSupport")], support: "basic" },
     { name: t("payment.monthlyPremium"), price: "40€/mes", paymentType: "monthly", features: [t("features.hosting"), t("features.updates"), t("features.backups"), t("features.security"), t("features.maintenancePriority"), t("features.whatsappSupport")], support: "premium" },
   ]
 
-  useEffect(() => {
-    const selectArea = () => {
-      const hash = window.location.hash.replace("#", "")
-      if (hash && areas.find(a => a.id === hash)) {
-        setActiveArea(hash)
-        setTimeout(() => {
-          document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
-        }, 300)
-      }
+useEffect(() => {
+  const checkStorage = () => {
+    const savedArea = localStorage.getItem("activeServiceArea")
+    if (savedArea && areas.find(a => a.id === savedArea)) {
+      setActiveArea(savedArea)
+      localStorage.removeItem("activeServiceArea")
     }
-    selectArea()
-    window.addEventListener("hashchange", selectArea)
-    return () => window.removeEventListener("hashchange", selectArea)
-  }, [])
+  }
+  checkStorage()
+  window.addEventListener("storage", checkStorage)
+  const interval = setInterval(checkStorage, 200)
+  return () => {
+    window.removeEventListener("storage", checkStorage)
+    clearInterval(interval)
+  }
+}, [])
 
   const activeAreaData = areas.find(a => a.id === activeArea)
   const singlePlans = activeAreaData?.plans.filter(p => p.paymentType === "single") || []
@@ -167,7 +168,7 @@ export function ServicesSidebar() {
   )
 
   return (
-    <section id="services" className="relative py-16 sm:py-20 md:py-24 bg-black overflow-hidden">
+    <section id="services" className="relative pt-24 pb-16 min-h-screen bg-black overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-red-950/5 to-black" />
         <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-red-500/3 rounded-full blur-3xl" />
