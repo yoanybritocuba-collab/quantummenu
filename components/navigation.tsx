@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Home, Briefcase, Users, Shield, Phone, Globe } from "lucide-react"
+import { Menu, X, Home, Briefcase, Users, Shield, Phone } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
 import { languages, type Language } from "@/lib/translations"
@@ -25,8 +25,8 @@ export function Navigation({ activePage, setActivePage }: NavigationProps) {
   const navItems = [
     { id: "home", label: "", icon: <Home className="w-5 h-5" /> },
     { id: "services", label: t("nav.services"), icon: <Briefcase className="w-4 h-4" /> },
-    { id: "about", label: "Nosotros", icon: <Users className="w-4 h-4" /> },
-    { id: "guarantee", label: "Garantía", icon: <Shield className="w-4 h-4" /> },
+    { id: "about", label: t("nav.about"), icon: <Users className="w-4 h-4" /> },
+    { id: "guarantee", label: t("nav.guarantee"), icon: <Shield className="w-4 h-4" /> },
     { id: "contact", label: t("nav.contact"), icon: <Phone className="w-4 h-4" /> },
   ]
 
@@ -51,7 +51,6 @@ export function Navigation({ activePage, setActivePage }: NavigationProps) {
             </span>
           </button>
 
-          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
             {navItems.map((item) => (
               <button
@@ -68,7 +67,6 @@ export function Navigation({ activePage, setActivePage }: NavigationProps) {
               </button>
             ))}
             
-            {/* Selector idiomas desktop */}
             <div className="relative ml-2">
               <button onClick={() => setIsLangOpen(!isLangOpen)} className="w-10 h-10 flex items-center justify-center text-xl hover:scale-110 transition-transform rounded-xl hover:bg-zinc-800/50">
                 {currentFlag}
@@ -88,35 +86,18 @@ export function Navigation({ activePage, setActivePage }: NavigationProps) {
             </div>
           </div>
 
-          {/* Móvil: idioma + hamburguesa */}
           <div className="flex md:hidden items-center gap-1">
-            {/* Selector idiomas móvil - visible en barra */}
             <div className="relative">
               <button onClick={() => setIsLangOpen(!isLangOpen)} className="w-10 h-10 flex items-center justify-center text-lg hover:scale-110 transition-transform rounded-xl hover:bg-zinc-800/50">
                 {currentFlag}
               </button>
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute top-full right-0 mt-3 rounded-xl overflow-hidden shadow-xl border border-red-500/30 z-50 min-w-[160px] bg-zinc-900/95 backdrop-blur-xl">
-                    {languages.map((lang) => (
-                      <button key={lang.code} onClick={() => { setLanguage(lang.code as Language); setIsLangOpen(false) }} className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${language === lang.code ? "bg-red-500/20 text-red-400" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-white"}`}>
-                        <span className="text-lg">{lang.flag}</span>
-                        <span className="flex-1 text-left text-sm">{lang.name}</span>
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
-            
-            {/* Hamburguesa */}
             <button onClick={() => setIsOpen(!isOpen)} className="p-2 hover:bg-zinc-800/50 transition-colors rounded-xl">
               {isOpen ? <X className="w-6 h-6 text-red-400" /> : <Menu className="w-6 h-6 text-red-400" />}
             </button>
           </div>
         </div>
 
-        {/* Menú móvil desplegable */}
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden overflow-hidden border-t border-zinc-800">
