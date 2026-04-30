@@ -15,13 +15,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("es")
   const [mounted, setMounted] = useState(false)
 
-  // Cargar idioma guardado SOLO en el cliente
   useEffect(() => {
     const saved = localStorage.getItem("language") as Language
     if (saved && translations[saved]) {
       setLanguage(saved)
     } else {
-      // Detectar idioma del navegador
       const browserLang = navigator.language.split('-')[0] as Language
       if (translations[browserLang]) {
         setLanguage(browserLang)
@@ -30,7 +28,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setMounted(true)
   }, [])
 
-  // Guardar en localStorage cuando cambie
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("language", language)
@@ -44,14 +41,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
     const translated = langTranslations[key]
     if (!translated) {
-      // Si no existe la traducción, mostrar la clave y advertencia
-      console.warn(`🔤 Missing translation: "${key}" for language: ${language}`)
       return translations["es"]?.[key] || key
     }
     return translated
   }, [language])
 
-  // Mostrar children inmediatamente para evitar problemas de hidratación
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}

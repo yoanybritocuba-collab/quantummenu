@@ -1,144 +1,120 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Home, Briefcase, Users, Shield, Phone } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
 import { languages, type Language } from "@/lib/translations"
 
-export function Navigation() {
+interface NavigationProps {
+  activePage: string
+  setActivePage: (page: string) => void
+}
+
+export function Navigation({ activePage, setActivePage }: NavigationProps) {
   const { language, setLanguage, t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const navItems = [
-    { name: t("nav.projects"), href: "#projects" },
-    { name: t("nav.demos"), href: "#demos" },
-    { name: t("nav.services"), href: "#services" },
-    { name: t("nav.pricing"), href: "#pricing" },
-    { name: t("nav.contact"), href: "#contact" },
-  ]
-
-  const scrollToSection = (href: string) => {
+  const handleNavClick = (page: string) => {
+    setActivePage(page)
     setIsOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
-  const currentFlag = languages.find(l => l.code === language)?.flag
+  const navItems = [
+    { id: "home", label: "", icon: <Home className="w-5 h-5" /> },
+    { id: "services", label: t("nav.services"), icon: <Briefcase className="w-4 h-4" /> },
+    { id: "about", label: "Nosotros", icon: <Users className="w-4 h-4" /> },
+    { id: "guarantee", label: "Garantía", icon: <Shield className="w-4 h-4" /> },
+    { id: "contact", label: t("nav.contact"), icon: <Phone className="w-4 h-4" /> },
+  ]
+
+  const [currentFlag, setCurrentFlag] = useState<string>("🇪🇸")
+
+  useEffect(() => {
+    const flag = languages.find(l => l.code === language)?.flag
+    if (flag) setCurrentFlag(flag)
+  }, [language])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/80 backdrop-blur-xl border-b border-red-500/20" : "bg-transparent"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-zinc-800">
       <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 w-full">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           
-          {/* Logo - izquierda */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 flex-shrink-0"
-          >
-            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-transparent">
-              <img
-                src="/logo.png"
-                alt="Logo"
-                className="w-full h-full object-contain"
-                style={{ background: 'transparent' }}
-              />
+          <button onClick={() => handleNavClick("home")} className="flex items-center gap-3 flex-shrink-0 group">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-transparent group-hover:scale-105 transition-transform">
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-white font-bold text-sm sm:text-base lg:text-lg bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent hidden sm:inline-block">
+            <span className="font-bold text-xl sm:text-2xl bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               QuantumMenu
             </span>
           </button>
 
-          {/* Desktop Navigation - centro */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6 absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
             {navItems.map((item) => (
               <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-sm lg:text-base text-zinc-300 hover:text-white transition-colors duration-200 relative group whitespace-nowrap"
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  activePage === item.id
+                    ? "bg-red-500/20 text-red-400 shadow-lg shadow-red-500/10"
+                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                }`}
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-purple-500 group-hover:w-full transition-all duration-300" />
+                {item.icon}
+                {item.label && <span>{item.label}</span>}
               </button>
             ))}
-          </div>
-
-          {/* Right side - fijo a la derecha */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 text-base sm:text-xl hover:scale-110 transition-transform duration-200"
-                aria-label="Select language"
-              >
+            
+            <div className="relative ml-2">
+              <button onClick={() => setIsLangOpen(!isLangOpen)} className="w-10 h-10 flex items-center justify-center text-xl hover:scale-110 transition-transform rounded-xl hover:bg-zinc-800/50">
                 {currentFlag}
               </button>
-              {isLangOpen && (
-                <div className="absolute top-full right-0 mt-2 glass rounded-xl overflow-hidden shadow-xl border border-red-500/30 z-50 min-w-[140px] bg-black/90 backdrop-blur-xl">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code as Language)
-                        setIsLangOpen(false)
-                      }}
-                      className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors ${
-                        language === lang.code
-                          ? "bg-red-500/20 text-red-400"
-                          : "text-zinc-300 hover:bg-red-500/10"
-                      }`}
-                    >
-                      <span className="text-base">{lang.flag}</span>
-                      <span className="flex-1 text-left text-xs">{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute top-full right-0 mt-3 rounded-xl overflow-hidden shadow-xl border border-red-500/30 z-50 min-w-[160px] bg-zinc-900/95 backdrop-blur-xl">
+                    {languages.map((lang) => (
+                      <button key={lang.code} onClick={() => { setLanguage(lang.code as Language); setIsLangOpen(false) }} className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${language === lang.code ? "bg-red-500/20 text-red-400" : "text-zinc-400 hover:bg-zinc-800/50 hover:text-white"}`}>
+                        <span className="text-lg">{lang.flag}</span>
+                        <span className="flex-1 text-left text-sm">{lang.name}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-
-            {/* Mobile menu button - SIN CUADRO */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-1.5 hover:bg-red-500/10 transition-colors rounded-lg"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
+
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 hover:bg-zinc-800/50 transition-colors rounded-xl">
+            {isOpen ? <X className="w-6 h-6 text-red-400" /> : <Menu className="w-6 h-6 text-red-400" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation - desplegable */}
-        {isOpen && (
-          <div className="md:hidden py-3 border-t border-red-500/20 mt-2">
-            <div className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="px-3 py-2 text-left text-sm text-zinc-300 hover:text-white hover:bg-red-500/10 rounded-lg transition-all duration-200"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden overflow-hidden border-t border-zinc-800">
+              <div className="flex flex-col gap-1 py-4">
+                {navItems.map((item) => (
+                  <button key={item.id} onClick={() => handleNavClick(item.id)} className={`flex items-center gap-3 px-4 py-3 text-left text-sm rounded-xl transition-all ${activePage === item.id ? "bg-red-500/20 text-red-400" : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"}`}>
+                    {item.icon}
+                    {item.label || "Inicio"}
+                  </button>
+                ))}
+                <div className="px-4 pt-2 border-t border-zinc-800 mt-2">
+                  <span className="text-zinc-500 text-xs mb-2 block">Idioma</span>
+                  <div className="flex gap-2">
+                    {languages.map((lang) => (
+                      <button key={lang.code} onClick={() => setLanguage(lang.code as Language)} className={`px-3 py-1.5 rounded-lg text-sm ${language === lang.code ? "bg-red-500/20 text-red-400" : "text-zinc-400 hover:bg-zinc-800/50"}`}>
+                        {lang.flag} {lang.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )

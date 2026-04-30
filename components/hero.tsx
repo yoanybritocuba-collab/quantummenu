@@ -311,41 +311,33 @@ export function Hero() {
         </div>
       </section>
 
-      {/* 2. QR REAL Y CARTEL DE DEMOSTRACIÓN */}
+      {/* 2. QR REAL - TEXTO ELIMINADO */}
       <section className="relative py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col items-center">
-            <div className="mb-6">
-              <span className="inline-block px-5 py-1.5 bg-gradient-to-r from-red-600 to-purple-600 text-white text-xs sm:text-sm font-semibold rounded-full shadow-lg">
-                📱 ESCANEA PARA DEMOSTRACIÓN 📱
-              </span>
-            </div>
+          <div className="flex justify-center">
+            <div className="relative group" style={{ zIndex: 1 }}>
+              <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-red-500/40 animate-spin-slow shadow-[0_0_12px_rgba(255,0,0,0.3)]" />
+              <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-purple-500/30 animate-spin-slow" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
 
-            <div className="flex justify-center">
-              <div className="relative group" style={{ zIndex: 1 }}>
-                <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-red-500/40 animate-spin-slow shadow-[0_0_12px_rgba(255,0,0,0.3)]" />
-                <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-purple-500/30 animate-spin-slow" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
+              <div className="relative bg-white rounded-xl sm:rounded-2xl p-1.5 shadow-2xl">
+                <div className="absolute inset-0 overflow-hidden rounded-xl sm:rounded-2xl pointer-events-none z-10">
+                  <div
+                    className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_8px_#06b6d4]"
+                    style={{ top: `${scanLine}%` }}
+                  />
+                </div>
 
-                <div className="relative bg-white rounded-xl sm:rounded-2xl p-1.5 shadow-2xl">
-                  <div className="absolute inset-0 overflow-hidden rounded-xl sm:rounded-2xl pointer-events-none z-10">
-                    <div
-                      className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_8px_#06b6d4]"
-                      style={{ top: `${scanLine}%` }}
+                <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white rounded-lg">
+                  <canvas ref={canvasRef} style={{ display: "none" }} />
+                  {qrImageUrl ? (
+                    <img
+                      src={qrImageUrl}
+                      alt="Código QR de QuantumMenu"
+                      className="w-full h-full rounded-lg"
                     />
-                  </div>
-
-                  <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white rounded-lg">
-                    <canvas ref={canvasRef} style={{ display: "none" }} />
-                    {qrImageUrl ? (
-                      <img
-                        src={qrImageUrl}
-                        alt="Código QR de QuantumMenu"
-                        className="w-full h-full rounded-lg"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse" />
-                    )}
-                  </div>
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 rounded-lg animate-pulse" />
+                  )}
                 </div>
               </div>
             </div>
