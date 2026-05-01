@@ -68,8 +68,8 @@ export function ServicesSidebar() {
       bgActive: "bg-cyan-500/20 border-cyan-500/50 text-cyan-400",
       bgInactive: "bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300",
       plans: [
-        { name: t("areas.linkbio.plans.basic"), price: "200€", popular: false, badge: null, paymentType: "single", features: [t("features.links5"), t("features.responsive"), t("features.socialMedia"), t("features.hosting")], support: "basic" },
-        { name: t("areas.linkbio.plans.pro"), price: "280€", popular: true, badge: t("badges.recommended"), paymentType: "single", features: [t("features.linksUnlimited"), t("features.customDesign"), t("features.whatsappBtn"), t("features.clickStats"), t("features.hosting"), t("features.maintenanceBasic")], support: "basic" },
+        { name: t("areas.linkbio.plans.basic"), price: "280€", popular: false, badge: null, paymentType: "single", features: [t("features.links5"), t("features.responsive"), t("features.socialMedia"), t("features.hosting")], support: "basic" },
+        { name: t("areas.linkbio.plans.pro"), price: "220€", popular: true, badge: t("badges.recommended"), paymentType: "single", features: [t("features.linksUnlimited"), t("features.customDesign"), t("features.whatsappBtn"), t("features.clickStats"), t("features.hosting"), t("features.maintenanceBasic")], support: "basic" },
         { name: t("areas.linkbio.plans.premium"), price: "350€", popular: false, badge: t("badges.pro"), paymentType: "single", features: [t("features.linksUnlimited"), t("features.premiumDesign"), t("features.whatsappBtn"), t("features.advancedStats"), t("features.bioSeo"), t("features.hosting"), t("features.maintenancePriority")], support: "premium" },
       ]
     },
