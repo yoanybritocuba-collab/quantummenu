@@ -41,7 +41,7 @@ export function Hero() {
       };
       logo.onerror = () => setQrImageUrl(canvas.toDataURL("image/png"));
     } catch (error) {
-      console.error("Error generando el código QR:", error);
+      console.error("Error generando QR:", error);
     }
   }, []);
 
@@ -100,22 +100,24 @@ export function Hero() {
     setCategories(categoriesData.map(cat => ({ ...cat, name: t(cat.nameKey), nameEn: t(cat.nameEnKey) })));
   }, [language, t]);
 
+  const toggleCategoryActive = (id: number) => {
+    setCategories(prev => prev.map(cat => cat.id === id ? { ...cat, active: !cat.active } : cat));
+  };
+  const toggleAvailability = (id: number) => {
+    setAdminMenu(prev => prev.map(item => item.id === id ? { ...item, available: !item.available } : item));
+  };
+  const toggleRecommended = (id: number) => {
+    setAdminMenu(prev => prev.map(item => item.id === id ? { ...item, recommended: !item.recommended } : item));
+  };
+
   return (
     <>
-      {/* HERO - adaptable a móvil y desktop */}
+      {/* HERO */}
       <section className="relative w-screen h-[100dvh] overflow-hidden mt-16 sm:mt-20">
         <div className="absolute inset-0 z-0">
-          <NextImage
-            src="/fondo.png"
-            alt="Fondo"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="100vw"
-          />
+          <NextImage src="/fondo.png" alt="Fondo" fill className="object-cover object-center" priority sizes="100vw" />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-
         <div className="relative z-10 w-full h-full flex items-center justify-center px-4">
           <div className="flex flex-col items-center text-center max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-500/20 backdrop-blur-sm border border-red-500/30 mb-4 sm:mb-6">
@@ -124,8 +126,7 @@ export function Hero() {
               <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-yellow-400" />
             </div>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1]">
-              <span className="bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">{t("hero.title1")}</span>
-              <br />
+              <span className="bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">{t("hero.title1")}</span><br />
               <span className="text-white">{t("hero.title2")}</span>
             </h1>
             <div className="h-14 sm:h-20 mt-4">
@@ -140,10 +141,10 @@ export function Hero() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center">
             <div className="relative group" style={{ zIndex: 1 }}>
-              <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-red-500/40 animate-spin-slow" />
-              <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-purple-500/30 animate-spin-slow" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
-              <div className="relative bg-white rounded-xl sm:rounded-2xl p-1.5 shadow-2xl">
-                <div className="absolute inset-0 overflow-hidden rounded-xl sm:rounded-2xl pointer-events-none z-10">
+              <div className="absolute -inset-3 rounded-full border border-red-500/40 animate-spin-slow" />
+              <div className="absolute -inset-4 rounded-full border border-purple-500/30 animate-spin-slow" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
+              <div className="relative bg-white rounded-xl p-1.5 shadow-2xl">
+                <div className="absolute inset-0 overflow-hidden rounded-xl pointer-events-none z-10">
                   <div className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" style={{ top: `${scanLine}%` }} />
                 </div>
                 <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white rounded-lg">
@@ -156,7 +157,7 @@ export function Hero() {
         </div>
       </section>
 
-      {/* MÓVILES DEMO */}
+      {/* MÓVILES DEMO CON BOTONES INTERACTIVOS */}
       <section className="relative py-12 sm:py-16 md:py-20 overflow-hidden bg-black">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-red-950/5 to-black" />
@@ -172,6 +173,7 @@ export function Hero() {
               <span className="bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">{t("functions.title1")}</span><br />
               <span className="text-white">{t("functions.title2")}</span>
             </h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto mt-4 text-sm sm:text-base">{t("functions.subtitle")}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
             {/* Móvil Productos */}
@@ -184,19 +186,40 @@ export function Hero() {
                 </div>
                 <div className="bg-black rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden h-[400px] sm:h-[450px] md:h-[500px]">
                   <div className="bg-gradient-to-r from-red-600/20 to-purple-700/20 p-2 sm:p-3 pt-10 sm:pt-12 border-b border-red-500/20">
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("demo.productos")}</span>
+                    <div className="flex items-center gap-1.5">
+                      <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />
+                      <span className="text-white font-semibold text-[10px] sm:text-xs">{t("demo.productos")}</span>
+                    </div>
+                    <p className="text-[8px] text-zinc-500 mt-1 text-center">{t("demo.productosHint")}</p>
                   </div>
                   <div className="p-2 sm:p-3 space-y-2 h-[340px] sm:h-[380px] md:h-[430px] overflow-y-auto custom-scrollbar">
                     {adminMenu.map((item) => (
-                      <div key={item.id} className="bg-gradient-to-r from-zinc-900/50 to-black/50 rounded-xl overflow-hidden border border-zinc-800">
+                      <div key={item.id} className="bg-gradient-to-r from-zinc-900/50 to-black/50 rounded-xl overflow-hidden border border-zinc-800 hover:border-red-500/30 transition-all">
                         <div className="flex gap-2 p-2">
                           <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden flex-shrink-0 bg-zinc-800">
                             <NextImage src={item.image} alt={item.name} fill className="object-cover" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-white font-semibold text-[10px] sm:text-xs">{item.name}</h4>
-                            <p className="text-zinc-500 text-[8px] sm:text-[10px]">{item.category}</p>
-                            <span className="text-red-400 font-bold text-[10px] sm:text-xs">€{item.price}</span>
+                            <div className="flex items-start justify-between gap-1">
+                              <div>
+                                <div className="flex items-center gap-1">
+                                  <h4 className="text-white font-semibold text-[10px] sm:text-xs">{item.name}</h4>
+                                  {item.recommended && <ChefHat className="w-3 h-3 text-yellow-400" />}
+                                </div>
+                                <p className="text-zinc-500 text-[8px]">{item.category}</p>
+                              </div>
+                              <span className="text-red-400 font-bold text-[10px] sm:text-xs">€{item.price}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 mt-1.5">
+                              <button onClick={() => toggleAvailability(item.id)} className={`flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[8px] font-medium transition-all ${item.available ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}>
+                                {item.available ? <Check className="w-2 h-2" /> : <X className="w-2 h-2" />}
+                                {item.available ? t("admin.available") : t("admin.soldOut")}
+                              </button>
+                              <button onClick={() => toggleRecommended(item.id)} className={`flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[8px] font-medium transition-all ${item.recommended ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30" : "bg-zinc-800 text-zinc-500 border border-zinc-700"}`}>
+                                <ChefHat className="w-2 h-2" />
+                                {item.recommended ? t("admin.suggested") : t("admin.highlight")}
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -217,17 +240,28 @@ export function Hero() {
                 </div>
                 <div className="bg-black rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden h-[400px] sm:h-[450px] md:h-[500px]">
                   <div className="bg-gradient-to-r from-red-600/20 to-purple-700/20 p-2 sm:p-3 pt-10 sm:pt-12 border-b border-red-500/20">
-                    <span className="text-white font-semibold text-[10px] sm:text-xs">{t("demo.categorias")}</span>
+                    <div className="flex items-center gap-1.5">
+                      <FolderTree className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />
+                      <span className="text-white font-semibold text-[10px] sm:text-xs">{t("demo.categorias")}</span>
+                    </div>
+                    <p className="text-[8px] text-zinc-500 mt-1 text-center">{t("demo.categoriasHint")}</p>
                   </div>
                   <div className="p-2 sm:p-3 space-y-2 h-[340px] sm:h-[380px] md:h-[430px] overflow-y-auto custom-scrollbar">
                     {categories.map((cat) => (
                       <div key={cat.id} className="bg-gradient-to-r from-zinc-900/50 to-black/50 rounded-xl overflow-hidden border border-zinc-800">
                         <div className="flex items-center justify-between p-3">
-                          <div>
-                            <h4 className="text-white font-semibold text-sm">{cat.name}</h4>
-                            <p className="text-zinc-500 text-xs">{cat.nameEn}</p>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <FolderTree className="w-4 h-4 text-red-400" />
+                              <h4 className="text-white font-semibold text-sm">{cat.name}</h4>
+                            </div>
+                            <p className="text-zinc-500 text-xs mt-0.5">{cat.nameEn}</p>
+                            <p className="text-zinc-600 text-[10px] mt-1">{t("demo.order")}: {cat.order}</p>
                           </div>
-                          <span className={`px-3 py-1 rounded-full text-xs ${cat.active ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"}`}>{cat.active ? "Activa" : "Inactiva"}</span>
+                          <button onClick={() => toggleCategoryActive(cat.id)} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${cat.active ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}>
+                            {cat.active ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+                            {cat.active ? t("admin.active") : t("admin.inactive")}
+                          </button>
                         </div>
                       </div>
                     ))}

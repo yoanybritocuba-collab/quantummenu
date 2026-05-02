@@ -12,10 +12,7 @@ interface WhatWeDoProps {
 
 export function WhatWeDo({ setActivePage, scrollToServices }: WhatWeDoProps) {
   const { t } = useLanguage()
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const handleClick = (areaId: string) => {
     localStorage.setItem("activeServiceArea", areaId)
@@ -53,8 +50,7 @@ export function WhatWeDo({ setActivePage, scrollToServices }: WhatWeDoProps) {
             <span className="text-[10px] sm:text-xs text-red-400 font-mono tracking-wider">{t("whatWeDo.badge")}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            <span className="text-white">{t("whatWeDo.title1")}</span>
-            <br />
+            <span className="text-white">{t("whatWeDo.title1")}</span><br />
             <span className="bg-gradient-to-r from-red-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">{t("whatWeDo.title2")}</span>
           </h2>
           <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto mt-3">{t("whatWeDo.subtitle")}</p>
