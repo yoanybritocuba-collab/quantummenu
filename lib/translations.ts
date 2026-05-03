@@ -9,7 +9,7 @@ export const languages: { code: Language; name: string; flag: string }[] = [
 ]
 
 export const translations: Record<Language, Record<string, string>> = {
-   es: {
+    es: {
     "nav.home": "Inicio",
     "nav.services": "Servicios",
     "nav.about": "Nosotros",
@@ -119,7 +119,7 @@ export const translations: Record<Language, Record<string, string>> = {
     "footer.rights": "Todos los derechos reservados",
     "footer.tagline": "Para negocios que quieren digitalizarse",
   },
-     en: {
+      en: {
     "nav.home": "Home",
     "nav.services": "Services",
     "nav.about": "About Us",
