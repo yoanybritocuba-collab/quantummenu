@@ -188,15 +188,6 @@ export function ServicesSidebar() {
       </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SignalBadge />
-        <div className="mb-8 sm:mb-10">
-          <div className="flex overflow-x-auto pb-2 gap-2 sm:gap-3 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center">
-            {areas.map((area) => (
-              <button key={area.id} onClick={() => setActiveArea(area.id)} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 ${activeArea === area.id ? area.bgActive + " shadow-lg" : area.bgInactive}`}>
-                <span>{area.icon}</span><span>{area.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
         <AnimatePresence mode="wait">
           {activeAreaData && (
             <motion.div key={activeArea} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
